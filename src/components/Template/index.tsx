@@ -1,7 +1,7 @@
 import React from 'react'
 import type { FC } from 'react'
 import { graphql, Link } from 'gatsby'
-import { BackTop, Footer, SEO } from 'components'
+import { BackTop, Footer, SEO, Comment } from 'components'
 
 export interface Props {
   data: {
@@ -87,7 +87,9 @@ const Template: FC<Props> = ({ data }) => {
             itemProp="articleBody"
           />
         </div>
-        <div className="max-w-screen-md px-6 pt-10 pb-20">Comment</div>
+        <div className="max-w-screen-md px-6 pt-10 pb-20">
+          <Comment />
+        </div>
       </article>
 
       <BackTop />

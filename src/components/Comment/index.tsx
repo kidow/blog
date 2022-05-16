@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react'
 import type { FC } from 'react'
 
 export interface Props {}
-interface State {}
 
 const Comment: FC<Props> = () => {
   const ref = useRef<HTMLDivElement>(null)
@@ -12,16 +11,16 @@ const Comment: FC<Props> = () => {
     const attributes = {
       src: 'https://giscus.app/client.js',
       'data-repo': 'kidow/blog',
-      'data-repo-id': 'R_kgDOHL90BQ',
-      'data-category': 'Show and tell',
-      'data-category-id': 'DIC_kwDOHL90Bc4CO_mx',
+      'data-repo-id': 'R_kgDOHWExHw',
+      'data-category': 'Q&A',
+      'data-category-id': 'DIC_kwDOHWExH84CPIj8',
       'data-mapping': 'title',
       'data-reactions-enabled': '1',
       'data-emit-metadata': '0',
       'data-input-position': 'bottom',
-      'data-theme': 'dark_protanopia',
+      'data-theme': 'dark_dimmed',
       'data-lang': 'ko',
-      crossOrigin: 'anonymouse',
+      crossOrigin: 'anonymous',
       async: 'true'
     }
     Object.entries(attributes).forEach(([key, value]) =>
