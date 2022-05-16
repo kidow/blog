@@ -3,15 +3,17 @@ import { Link } from 'gatsby'
 import type { FC } from 'react'
 import classnames from 'classnames'
 
-export interface Props {}
+export interface Props {
+  path?: string
+}
 interface State {}
 
-const Footer: FC<Props> = () => {
+const Footer: FC<Props> = ({ path }) => {
   return (
     <footer className="bg-neutral-800 text-xs">
       <div
         className={classnames('container mx-auto', {
-          'max-w-screen-md': window.location.pathname !== '/'
+          'max-w-screen-md': path !== '/'
         })}
       >
         <div className="p-6">
