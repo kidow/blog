@@ -25,9 +25,23 @@ const HomePage: FC<{
   return (
     <main>
       <SEO />
-      <div className="container mx-auto min-h-screen pt-10 pb-20">
-        <div className="flex items-center gap-5">
+      <div className="container mx-auto min-h-screen px-6 pt-10 pb-20">
+        <div className="flex items-center gap-5 text-sm text-neutral-500">
           <img src="/kidow-blog.svg" alt="" className="h-7" />
+          <a
+            href="https://resume.kidow.me"
+            target="_blank"
+            className="hover:text-neutral-400 hover:underline"
+          >
+            Résumé
+          </a>
+          <a
+            href="https://github.com/kidow"
+            target="_blank"
+            className="hover:text-neutral-400 hover:underline"
+          >
+            Github
+          </a>
         </div>
         <ul className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {data?.allMarkdownRemark?.nodes.map((item, key) => (
