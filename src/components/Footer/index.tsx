@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import type { FC } from 'react'
+import classnames from 'classnames'
 
 export interface Props {}
 interface State {}
@@ -8,7 +9,11 @@ interface State {}
 const Footer: FC<Props> = () => {
   return (
     <footer className="bg-neutral-800 text-xs">
-      <div className="container mx-auto max-w-screen-md">
+      <div
+        className={classnames('container mx-auto', {
+          'max-w-screen-md': window.location.pathname !== '/'
+        })}
+      >
         <div className="p-6">
           <Link to="/">
             <img src="/kidow-blog.svg" alt="" className="h-6" />
