@@ -21,7 +21,8 @@ const HomePage: FC<{
       }>
     }
   }
-}> = ({ data }) => {
+  path: string
+}> = ({ data, path }) => {
   return (
     <main>
       <SEO />
@@ -63,7 +64,7 @@ const HomePage: FC<{
           ))}
         </ul>
       </div>
-      <Footer />
+      <Footer path={path} />
     </main>
   )
 }
