@@ -1,0 +1,62 @@
+{
+  "private": true,
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@heroicons/react": "1.0.6",
+    "gatsby": "^4.5.3",
+    "gatsby-plugin-algolia": "0.26.0",
+    "gatsby-plugin-google-tagmanager": "4.14.0",
+    "gatsby-plugin-image": "2.14.1",
+    "gatsby-plugin-manifest": "4.14.0",
+    "gatsby-plugin-offline": "5.14.0",
+    "gatsby-plugin-react-helmet": "5.14.0",
+    "gatsby-plugin-sharp": "4.14.1",
+    "gatsby-plugin-sitemap": "5.14.0",
+    "gatsby-plugin-typescript": "4.14.0",
+    "gatsby-remark-autolink-headers": "5.14.0",
+    "gatsby-remark-copy-linked-files": "5.14.0",
+    "gatsby-remark-images": "6.14.0",
+    "gatsby-remark-prismjs": "6.14.0",
+    "gatsby-remark-smartypants": "5.14.0",
+    "gatsby-source-filesystem": "4.14.0",
+    "gatsby-transformer-remark": "5.14.0",
+    "gatsby-transformer-sharp": "4.14.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "6.1.0"
+  },
+  "homepage": "https://blog.kidow.me",
+  "author": "Kidow <wcgo2ling@gmail.com>",
+  "description": "더 게으르기 위해 더 열심히 공부하는 개발자입니다.",
+  "name": "kidow-blog",
+  "keywords": [
+    "gatsby",
+    "kidow",
+    "blog",
+    "typescript",
+    "front-end",
+    "tailwindcss"
+  ],
+  "devDependencies": {
+    "@tailwindcss/line-clamp": "0.4.0",
+    "@tailwindcss/typography": "0.5.2",
+    "@types/node": "17.0.32",
+    "@types/react": "18.0.9",
+    "@types/react-dom": "18.0.3",
+    "@types/react-helmet": "6.1.5",
+    "@types/tailwindcss": "3.0.10",
+    "autoprefixer": "10.4.7",
+    "gatsby-plugin-postcss": "5.14.0",
+    "gatsby-plugin-root-import": "2.0.8",
+    "postcss": "8.4.13",
+    "prettier-plugin-tailwindcss": "0.1.10",
+    "tailwindcss": "3.0.24",
+    "typescript": "4.6.4"
+  }
+}
