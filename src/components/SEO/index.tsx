@@ -34,6 +34,9 @@ const SEO: FC<Props> = ({ title, description, thumbnail, url, meta }) => {
       htmlAttributes={{ lang: 'ko', dir: 'ltr' }}
       title={TITLE}
       link={[{ rel: 'canonical', href: URL }]}
+      script={[
+        { src: 'https://developers.kakao.com/sdk/js/kakao.min.js', defer: true }
+      ]}
       meta={[
         { name: 'description', content: DESCRIPTION },
         { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },

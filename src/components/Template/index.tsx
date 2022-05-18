@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import type { FC } from 'react'
 import { graphql, Link } from 'gatsby'
 import { BackTop, Footer, SEO, Comment } from 'components'
@@ -63,7 +63,45 @@ const Template: FC<Props> = ({ data }) => {
     return isOver && isNextUnder
   }
 
+  const onCopyLink = useCallback(async () => {
+    try {
+      await window.navigator.clipboard.writeText(
+        window.location.origin + window.location.pathname
+      )
+      alert('복사되었습니다.')
+    } catch (err) {
+      console.log(err)
+    }
+  }, [])
+
+  const onShareFacebook = useCallback(
+    () =>
+      window.open(
+        `http://www.facebook.com/sharer.php?u=${
+          window.location.origin + window.location.pathname
+        }`,
+        '_blank',
+        'width=600,height=400'
+      ),
+    []
+  )
+
+  const onShareTwitter = () =>
+    window.open(
+      `https://twitter.com/intent/tweet?url=${
+        window.location.origin + window.location.pathname
+      }`,
+      '_blank',
+      'width=600,height=400'
+    )
+
+  const onShareKakaoTalk = () =>
+    window.Kakao.Link.sendScrap({
+      requestUrl: window.location.origin + window.location.pathname
+    })
+
   useEffect(() => {
+    // window.Kakao.init(process.env.KAKAO_API_KEY)
     if (!data.markdownRemark.headings) return
     window.addEventListener('scroll', onScroll)
     return () => {
@@ -116,16 +154,28 @@ const Template: FC<Props> = ({ data }) => {
         <div className="prose-sm prose-invert relative px-6 md:prose-base">
           <div className="fixed top-[180px] right-[calc((100vw-768px)/2+768px)] hidden lg:block">
             <div className="z-10 flex flex-col gap-3 rounded-full border border-neutral-700 bg-neutral-800 p-2">
-              <button className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500">
+              <button
+                onClick={onCopyLink}
+                className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500"
+              >
                 <img src="/links.svg" alt="" className="!m-0 h-6 w-6" />
               </button>
-              <button className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500">
+              <button
+                onClick={onShareFacebook}
+                className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500"
+              >
                 <img src="/facebook.svg" alt="" className="!m-0 h-6 w-6" />
               </button>
-              <button className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500">
+              <button
+                onClick={onShareTwitter}
+                className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500"
+              >
                 <img src="/twitter.svg" alt="" className="!m-0 h-6 w-6" />
               </button>
-              <button className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500">
+              <button
+                onClick={onShareKakaoTalk}
+                className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500"
+              >
                 <img src="/kakao-talk.svg" alt="" className="!m-0 h-6 w-6" />
               </button>
             </div>
@@ -159,16 +209,16 @@ const Template: FC<Props> = ({ data }) => {
 
         <div className="flex max-w-screen-md justify-center px-6 pt-5">
           <div className="flex items-center gap-3">
-            <button>
+            <button onClick={onCopyLink}>
               <img src="/links.svg" alt="" className="!m-0 h-6 w-6" />
             </button>
-            <button>
+            <button onClick={onShareFacebook}>
               <img src="/facebook.svg" alt="" className="!m-0 h-6 w-6" />
             </button>
-            <button>
+            <button onClick={onShareTwitter}>
               <img src="/twitter.svg" alt="" className="!m-0 h-6 w-6" />
             </button>
-            <button>
+            <button onClick={onShareKakaoTalk}>
               <img src="/kakao-talk.svg" alt="" className="!m-0 h-6 w-6" />
             </button>
           </div>
