@@ -114,13 +114,30 @@ const Template: FC<Props> = ({ data }) => {
 
       <article className="container mx-auto min-h-screen max-w-screen-md">
         <div className="prose-sm prose-invert relative px-6 md:prose-base">
+          <div className="fixed top-[180px] right-[calc((100vw-768px)/2+768px)] hidden lg:block">
+            <div className="z-10 flex flex-col gap-3 rounded-full border border-neutral-700 bg-neutral-800 p-2">
+              <button className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500">
+                <img src="/links.svg" alt="" className="!m-0 h-6 w-6" />
+              </button>
+              <button className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500">
+                <img src="/facebook.svg" alt="" className="!m-0 h-6 w-6" />
+              </button>
+              <button className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500">
+                <img src="/twitter.svg" alt="" className="!m-0 h-6 w-6" />
+              </button>
+              <button className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500">
+                <img src="/kakao-talk.svg" alt="" className="!m-0 h-6 w-6" />
+              </button>
+            </div>
+          </div>
+
           <section
             dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
             itemProp="articleBody"
           />
 
           {!!data.markdownRemark.headings.length && (
-            <div className="fixed bottom-16 right-16 z-10 hidden h-[calc(100vh-284px)] w-[calc((100vw-768px)/2-64px)] overflow-auto text-sm text-neutral-500 md:block">
+            <div className="fixed bottom-16 right-16 z-10 hidden h-[calc(100vh-236px)] w-[calc((100vw-768px)/2-64px)] overflow-auto text-sm text-neutral-500 lg:block">
               <ol className="border-l border-neutral-800 !pl-2">
                 {data.markdownRemark.headings.map((item, key) => (
                   <li
@@ -139,6 +156,24 @@ const Template: FC<Props> = ({ data }) => {
             </div>
           )}
         </div>
+
+        <div className="flex max-w-screen-md justify-center px-6 pt-5">
+          <div className="flex items-center gap-3">
+            <button>
+              <img src="/links.svg" alt="" className="!m-0 h-6 w-6" />
+            </button>
+            <button>
+              <img src="/facebook.svg" alt="" className="!m-0 h-6 w-6" />
+            </button>
+            <button>
+              <img src="/twitter.svg" alt="" className="!m-0 h-6 w-6" />
+            </button>
+            <button>
+              <img src="/kakao-talk.svg" alt="" className="!m-0 h-6 w-6" />
+            </button>
+          </div>
+        </div>
+
         <div className="max-w-screen-md px-6 pt-10 pb-20">
           <Comment />
         </div>
