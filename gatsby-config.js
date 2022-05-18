@@ -41,6 +41,15 @@ module.exports = {
             options: {
               showCaptions: true
             }
+          },
+          {
+            resolve: 'gatsby-remark-series',
+            options: {
+              render: {
+                placeholder: 'toc',
+                template: (title) => title
+              }
+            }
           }
         ]
       }
