@@ -40,6 +40,7 @@ export interface Props {
 interface State {}
 
 const Template: FC<Props> = ({ data }) => {
+  console.log('data', data)
   const [scrollTop, setScrollTop] = useState(0)
 
   const onScroll = () =>
@@ -96,12 +97,12 @@ const Template: FC<Props> = ({ data }) => {
     )
 
   const onShareKakaoTalk = () =>
-    window.Kakao.Link.sendScrap({
+    window.Kakao?.Link?.sendScrap({
       requestUrl: window.location.origin + window.location.pathname
     })
 
   useEffect(() => {
-    // window.Kakao.init(process.env.KAKAO_API_KEY)
+    // window.Kakao?.init(process.env.KAKAO_API_KEY)
     if (!data.markdownRemark.headings) return
     window.addEventListener('scroll', onScroll)
     return () => {
@@ -207,7 +208,7 @@ const Template: FC<Props> = ({ data }) => {
           )}
         </div>
 
-        <div className="flex max-w-screen-md justify-center px-6 pt-5">
+        <div className="flex justify-center px-6 pt-5">
           <div className="flex items-center gap-3">
             <button onClick={onCopyLink}>
               <img src="/links.svg" alt="" className="!m-0 h-6 w-6" />
@@ -224,8 +225,39 @@ const Template: FC<Props> = ({ data }) => {
           </div>
         </div>
 
-        <div className="max-w-screen-md px-6 pt-10 pb-20">
+        <div className="px-6 pt-10">
           <Comment />
+        </div>
+
+        <div className="px-6">
+          <div className="mt-5 mb-20 flex justify-between border-y border-neutral-800 py-10">
+            <div>
+              {!!data.previous && (
+                <>
+                  <div className="text-sm text-neutral-700">이전 글</div>
+                  <Link
+                    className="text-neutral-300 hover:underline"
+                    to={data.previous.fields.slug}
+                  >
+                    {data.previous.frontmatter.title}
+                  </Link>
+                </>
+              )}
+            </div>
+            <div className="text-right">
+              {!!data.next && (
+                <>
+                  <div className="text-sm text-neutral-700">다음 글</div>
+                  <Link
+                    className="text-neutral-300 hover:underline"
+                    to={data.next.fields.slug}
+                  >
+                    {data.next.frontmatter.title}
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
         </div>
       </article>
 
