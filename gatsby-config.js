@@ -30,7 +30,7 @@ module.exports = {
           {
             resolve: 'gatsby-remark-autolink-headers',
             options: {
-              elements: ['h2']
+              elements: ['h2', 'h3']
             }
           },
           'gatsby-remark-prismjs',

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import type { FC } from 'react'
 import { graphql, Link } from 'gatsby'
 import { BackTop, Footer, SEO, Comment } from 'components'
+import classnames from 'classnames'
 
 export interface Props {
   data: {
@@ -16,6 +17,7 @@ export interface Props {
       fields: {
         slug: string
       }
+      headings: Array<{ id: string; depth: number; value: string }>
     }
     previous: {
       fields: {
@@ -38,6 +40,35 @@ export interface Props {
 interface State {}
 
 const Template: FC<Props> = ({ data }) => {
+  const [scrollTop, setScrollTop] = useState(0)
+
+  const onScroll = () =>
+    setScrollTop(
+      document.documentElement
+        ? document.documentElement.scrollTop || document.body.scrollTop
+        : document.body.scrollTop
+    )
+
+  const isActive = (id: string, index: number): boolean => {
+    const element = document.getElementById(id)
+    if (!element) return false
+    const isOver = scrollTop - 180 >= element.offsetTop
+    if (!data.markdownRemark.headings[index + 1]) return isOver
+    const nextElement = document.getElementById(
+      data.markdownRemark.headings[index + 1].id
+    )
+    if (!nextElement) return false
+    const isNextUnder = scrollTop - 180 < nextElement.offsetTop
+    return isOver && isNextUnder
+  }
+
+  useEffect(() => {
+    if (!data.markdownRemark.headings) return
+    window.addEventListener('scroll', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [])
   return (
     <>
       <SEO
@@ -81,11 +112,31 @@ const Template: FC<Props> = ({ data }) => {
       </section>
 
       <article className="container mx-auto min-h-screen max-w-screen-md">
-        <div className="prose-sm prose-invert px-6 md:prose-base">
+        <div className="prose-sm prose-invert relative px-6 md:prose-base">
           <section
             dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
             itemProp="articleBody"
           />
+
+          {!!data.markdownRemark.headings.length && (
+            <div className="fixed bottom-16 right-16 z-10 hidden h-[calc(100vh-284px)] w-[calc((100vw-768px)/2-64px)] overflow-auto text-sm text-neutral-500 md:block">
+              <ol className="border-l border-neutral-800 !pl-2">
+                {data.markdownRemark.headings.map((item, key) => (
+                  <li
+                    className={classnames('duration-150', {
+                      'ml-2': item.depth === 3,
+                      'scale-105 text-neutral-50': isActive(item.id, key)
+                    })}
+                    key={key}
+                  >
+                    <Link className="hover:text-neutral-200" to={`#${item.id}`}>
+                      {item.value}
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
         </div>
         <div className="max-w-screen-md px-6 pt-10 pb-20">
           <Comment />
@@ -110,6 +161,11 @@ export const pageQuery = graphql`
       }
       fields {
         slug
+      }
+      headings {
+        depth
+        id
+        value
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

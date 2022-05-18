@@ -45,8 +45,8 @@ const HomePage: FC<{
           </a>
         </div>
         <ul className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {data?.allMarkdownRemark?.nodes.map((item, key) => (
-            <li key={key}>
+          {data?.allMarkdownRemark?.nodes.map((item) => (
+            <li key={item.id}>
               <Link to={item.fields.slug}>
                 <div className="group space-y-2">
                   <h2 className="line-clamp-2 group-hover:underline">

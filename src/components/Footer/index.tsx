@@ -10,7 +10,7 @@ interface State {}
 
 const Footer: FC<Props> = ({ path }) => {
   return (
-    <footer className="bg-neutral-800 text-xs">
+    <footer className="relative z-20 bg-neutral-800 text-xs">
       <div
         className={classnames('container mx-auto', {
           'max-w-screen-md': path !== '/'
