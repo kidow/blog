@@ -50,6 +50,7 @@ const Template: FC<Props> = ({ data }) => {
     )
 
   const isActive = (id: string, index: number): boolean => {
+    if (typeof document === 'undefined') return false
     const element = document.getElementById(id)
     if (!element) return false
     const isOver = scrollTop - 180 >= element.offsetTop
