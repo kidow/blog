@@ -1,6 +1,6 @@
 ---
 title: 스택 에딧
-date: 2022-05-14T00:00:00.000Z
+date: 2022-05-14
 description: ㅇㅁㄴㅇㅁㄴㅇㄴㅁㄹㅁㄴㅁasd
 thumbnail: https://i.pravatar.cc
 ---
@@ -10,6 +10,8 @@ thumbnail: https://i.pravatar.cc
 ## Welcome to StackEdit!
 
 Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the **file explorer** on the left corner of the navigation bar.
+
+> Tip: Please Don't go ~~~
 
 ## Files
 

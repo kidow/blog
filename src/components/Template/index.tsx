@@ -197,6 +197,7 @@ const Template: FC<Props> = ({ data }) => {
           <section
             dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
             itemProp="articleBody"
+            id="markdown"
           />
 
           {!!data.markdownRemark.headings.length && (
