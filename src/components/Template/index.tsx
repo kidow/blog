@@ -40,7 +40,6 @@ export interface Props {
 interface State {}
 
 const Template: FC<Props> = ({ data }) => {
-  console.log('data', data)
   const [scrollTop, setScrollTop] = useState(0)
 
   const onScroll = () =>
@@ -69,7 +68,7 @@ const Template: FC<Props> = ({ data }) => {
       await window.navigator.clipboard.writeText(
         window.location.origin + window.location.pathname
       )
-      alert('복사되었습니다.')
+      alert('URL이 복사되었습니다.')
     } catch (err) {
       console.log(err)
     }
@@ -87,22 +86,35 @@ const Template: FC<Props> = ({ data }) => {
     []
   )
 
-  const onShareTwitter = () =>
-    window.open(
-      `https://twitter.com/intent/tweet?url=${
-        window.location.origin + window.location.pathname
-      }`,
-      '_blank',
-      'width=600,height=400'
-    )
+  const onShareTwitter = useCallback(
+    () =>
+      window.open(
+        `https://twitter.com/intent/tweet?url=${
+          window.location.origin + window.location.pathname
+        }`,
+        '_blank',
+        'width=600,height=400'
+      ),
+    []
+  )
 
-  const onShareKakaoTalk = () =>
-    window.Kakao?.Link?.sendScrap({
-      requestUrl: window.location.origin + window.location.pathname
-    })
+  const onShareKakaoTalk = useCallback(
+    () =>
+      window.Kakao?.Link?.sendScrap({
+        requestUrl: window.location.origin + window.location.pathname
+      }),
+    []
+  )
 
   useEffect(() => {
-    // window.Kakao?.init(process.env.KAKAO_API_KEY)
+    const script = document.createElement('script')
+    script.src = 'https://developers.kakao.com/sdk/js/kakao.min.js'
+    script.defer = true
+    document.head.appendChild(script)
+    script.onload = () => {
+      window.Kakao?.init(process.env.GATSBY_KAKAO_API_KEY)
+    }
+
     if (!data.markdownRemark.headings) return
     window.addEventListener('scroll', onScroll)
     return () => {
