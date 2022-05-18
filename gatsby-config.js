@@ -47,7 +47,26 @@ module.exports = {
             options: {
               render: {
                 placeholder: 'toc',
-                template: (title) => title
+                template: ({ items, name }) => {
+                  return `
+                  <div class="series-container">
+                    <div>${name}</div>
+                    <ol>
+                      ${items
+                        ?.map(
+                          (item, key) =>
+                            `<li><span>${key + 1}. </span><a href="${
+                              item.slug
+                            }">${item.title}</a></li>`
+                        )
+                        .join('')}
+                    </ol>
+                  </div>
+                `
+                }
+              },
+              resolvers: {
+                slug: (markdownNode) => markdownNode.fields.slug
               }
             }
           }

@@ -25,7 +25,7 @@ const HomePage: FC<{
 }> = ({ data, path }) => {
   return (
     <main>
-      <SEO />
+      <SEO title="개발자 Kidow 블로그" />
       <div className="container mx-auto min-h-screen px-6 pt-10 pb-20">
         <div className="flex items-center gap-5 text-sm text-neutral-500">
           <img src="/kidow-blog.svg" alt="" className="h-7" />

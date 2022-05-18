@@ -33,7 +33,6 @@ const SEO: FC<Props> = ({ title, description, thumbnail, url, meta }) => {
     <Helmet
       htmlAttributes={{ lang: 'ko', dir: 'ltr' }}
       title={TITLE}
-      titleTemplate={!!title ? '%s | Kidow' : '개발자 Kidow 블로그'}
       link={[{ rel: 'canonical', href: URL }]}
       meta={[
         { name: 'description', content: DESCRIPTION },

@@ -12,3 +12,39 @@ html,
 body {
   @apply bg-neutral-900 text-neutral-50;
 }
+
+$neutral-50: #fafafa;
+$neutral-100: #f5f5f5;
+$neutral-200: #e5e5e5;
+$neutral-300: #d4d4d4;
+$neutral-400: #a3a3a3;
+$neutral-500: #737373;
+$neutral-600: #525252;
+$neutral-700: #404040;
+$neutral-800: #262626;
+$neutral-900: #171717;
+
+.series-container {
+  background-color: $neutral-800;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.series-container div {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.series-container ol {
+  padding-left: 0px;
+  color: $neutral-200;
+}
+
+.series-container span {
+  font-style: italic;
+  color: $neutral-500;
+}
+
+.series-container a:hover {
+  text-decoration: underline;
+}
