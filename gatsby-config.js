@@ -30,9 +30,10 @@ module.exports = {
           {
             resolve: 'gatsby-remark-autolink-headers',
             options: {
-              elements: ['h2', 'h3']
+              elements: ['h1', 'h2', 'h3']
             }
           },
+          'gatsby-remark-prismjs-copy-button',
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',

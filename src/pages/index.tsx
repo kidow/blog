@@ -1,6 +1,5 @@
 import React from 'react'
 import type { FC } from 'react'
-import '../styles/index.css'
 import { Link, graphql } from 'gatsby'
 import { Footer, SEO } from 'components'
 

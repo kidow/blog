@@ -48,3 +48,18 @@ $neutral-900: #171717;
 .series-container a:hover {
   text-decoration: underline;
 }
+
+.gatsby-remark-prismjs-copy-button {
+  margin-right: 10px;
+  color: $neutral-500 !important;
+}
+
+.gatsby-remark-prismjs-copy-button:hover {
+  background-color: $neutral-600 !important;
+}
+
+@media (max-width: 600px) {
+  .gatsby-remark-prismjs-copy-button {
+    background-color: transparent !important;
+  }
+}

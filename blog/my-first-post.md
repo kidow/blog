@@ -8,3 +8,37 @@ order: 1
 ---
 
 <!-- toc -->
+
+```typescript
+const str: string = 'asasd'
+```
+
+```html
+<!DOCTYPE >
+<html></html>
+```
+
+```css
+html,
+body {
+  background-color: #fff;
+}
+```
+
+```bash
+npm install react
+```
+
+```tsx
+import React from 'react'
+import type { FC } from 'react'
+
+export interface Props {}
+interface State {}
+
+const Component: FC<Props> = () => {
+  return <>Component</>
+}
+
+export default Component
+```
