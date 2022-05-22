@@ -5,6 +5,7 @@ description: ㅇㅁㄴㅇㅁㄴㅇㄴㅁㄹㅁㄴㅁasd
 thumbnail: https://i.pravatar.cc
 series: 나의 첫 시리즈
 order: 2
+keywords: kwd1, kwd4
 ---
 
 ㅎㄹㅇㅁㄴㅁㄹㄴㅎㅁㄴㄹ

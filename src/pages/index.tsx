@@ -13,6 +13,7 @@ const HomePage: FC<{
           date: string
           description: string
           thumbnail: string
+          keywords: string
         }
         fields: {
           slug: string
@@ -21,7 +22,11 @@ const HomePage: FC<{
     }
   }
   path: string
-}> = ({ data, path }) => {
+  location: {
+    search: string
+  }
+}> = ({ data, path, location }) => {
+  console.log('data', data)
   return (
     <main>
       <SEO title="개발자 Kidow 블로그" />
@@ -48,12 +53,22 @@ const HomePage: FC<{
             <li key={item.id}>
               <Link to={item.fields.slug}>
                 <div className="group space-y-2">
-                  <h2 className="line-clamp-2 group-hover:underline">
+                  <h2 className="h-12 line-clamp-2 group-hover:underline">
                     {item.frontmatter.title}
                   </h2>
-                  <p className="text-neutral-400 line-clamp-3 group-hover:underline">
+                  <p className="h-[72px] text-neutral-400 line-clamp-3 group-hover:underline">
                     {item.frontmatter.description}
                   </p>
+                  <div className="flex flex-wrap gap-3 text-xs md:text-sm">
+                    {item.frontmatter.keywords.split(', ').map((keyword) => (
+                      <span
+                        className="rounded-full bg-neutral-800 py-1 px-3"
+                        key={keyword}
+                      >
+                        {keyword}
+                      </span>
+                    ))}
+                  </div>
                   <div className="text-sm text-neutral-400">
                     {item.frontmatter.date}
                   </div>
@@ -78,6 +93,7 @@ export const query = graphql`
           date(fromNow: true, locale: "ko")
           description
           thumbnail
+          keywords
         }
         fields {
           slug

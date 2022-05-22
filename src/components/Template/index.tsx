@@ -13,6 +13,7 @@ export interface Props {
         date: string
         description: string
         thumbnail: string
+        keywords: string
       }
       fields: {
         slug: string
@@ -289,6 +290,7 @@ export const pageQuery = graphql`
         date(formatString: "YYYY년 MM월 DD일", locale: "ko")
         description
         thumbnail
+        keywords
       }
       fields {
         slug
