@@ -161,6 +161,18 @@ const Template: FC<Props> = ({ data }) => {
           <div className="text-sm text-neutral-500">
             {data.markdownRemark.frontmatter.date}
           </div>
+          <div className="flex flex-wrap justify-center gap-3 text-xs md:text-sm">
+            {data.markdownRemark.frontmatter.keywords
+              ?.split(', ')
+              .map((keyword) => (
+                <span
+                  className="rounded-full bg-neutral-800 py-1 px-3"
+                  key={keyword}
+                >
+                  {keyword}
+                </span>
+              ))}
+          </div>
         </div>
       </section>
 
@@ -243,8 +255,8 @@ const Template: FC<Props> = ({ data }) => {
           <Comment />
         </div>
 
-        <div className="px-6">
-          <div className="mt-5 mb-20 flex justify-between border-y border-neutral-800 py-10">
+        <div className="px-6 pb-20">
+          <div className="mt-5 flex justify-between border-y border-neutral-800 py-10">
             <div>
               {!!data.previous && (
                 <>

@@ -22,10 +22,7 @@ const HomePage: FC<{
     }
   }
   path: string
-  location: {
-    search: string
-  }
-}> = ({ data, path, location }) => {
+}> = ({ data, path }) => {
   console.log('data', data)
   return (
     <main>
