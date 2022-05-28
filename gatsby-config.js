@@ -59,7 +59,7 @@ module.exports = {
                           (item, key) =>
                             `<li><span>${key + 1}. </span><a href="${
                               item.slug
-                            }">${item.title}</a></li>`
+                            }">${item.slug.slice(1, -1)}</a></li>`
                         )
                         .join('')}
                     </ol>
