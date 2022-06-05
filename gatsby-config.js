@@ -69,7 +69,8 @@ module.exports = {
                 slug: (markdownNode) => markdownNode.fields.slug
               }
             }
-          }
+          },
+          'gatsby-remark-external-links'
         ]
       }
     },

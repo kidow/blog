@@ -120,3 +120,11 @@ $neutral-900: #171717;
   padding-left: 0.3em;
   padding-right: 0.3em;
 }
+
+#markdown a {
+  color: #0891b2;
+}
+
+#markdown a:hover {
+  text-decoration: underline;
+}

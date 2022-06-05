@@ -45,11 +45,13 @@ export { default as Card } from './Card'
 
 여기서 코드 스니펫을 만들어 놓으면 빠르게 export문을 짤 수 있습니다.
 
-![코드 스니펫](./exp.gif)
+![코드 스니펫(exp)](./exp.gif)
+
+제가 쓰는 코드 스니펫들은 [이 곳](https://archive.kidow.me/docs/settings/Code%20Snippets)에 정리해놓았습니다.
 
 ### containers
 
-components도 있지만 containers도 있는데, containers는 하나의 작은 단위로는 보기 어렵지만 구성요소임에는 분명한 컴포넌트들의 모음입니다. Atomic React로 치자면 organisms와 templates에 속하는 컴포넌트들을 포함합니다. `Modal`, `Header`, `Footer` 등이 대표적인 containers에 속하는 컴포넌트입니다.
+components도 있지만 containers라는 폴더도 있는데, containers는 UI 구성요소임에는 분명하지만 보통 **재사용**을 잘 하지않는 큰 단위의 컴포넌트들을 모아두고 있습니다. `Header`, `Footer` 처럼, UI를 구성하는 요소지만 재사용
 
 ## services
 
@@ -114,3 +116,4 @@ export default request
 ```
 
 `create` 메소드를 통해 axios instance를 만들어 줍니다. 
+
