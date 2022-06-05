@@ -2,7 +2,7 @@
 title: 유지보수가 쉬운 리액트 코드 짜는 법 - (1) 프로젝트 설계
 date: 2022-05-26
 description: Next.js를 중심으로, components, containers, services 등의 폴더들을 소개합니다.
-thumbnail: https://i.pravatar.cc
+thumbnail: https://opengraph.kidow.me/api?id=sbs0dm5cvde
 series: 유지보수가 쉬운 리액트 코드 짜는 법
 order: 1
 keywords: React, 유지보수
@@ -10,7 +10,7 @@ keywords: React, 유지보수
 
 <!-- toc -->
 
-> Next.js 12.1.0 버전 기준으로 작성된 글입니다. Typescript와 TailwindCSS를 사용했습니다.
+> Next.js 12.1.0 버전 기준으로 작성한 글입니다. Typescript와 TailwindCSS를 사용했습니다.
 
 먼저 대략적으로 아래와 같은 구조를 사용하고 있습니다.
 
@@ -24,7 +24,7 @@ components는 말 그대로 구성요소 모음으로, 공용으로 쓰이는 �
 
 여러 번 사용될 수 있는 `Input`, `Button` 같은 것들이 대표적인 컴포넌트입니다.
 
-컴포넌트의 이름은 파스칼-케이스로 작성하고, 한 컴포넌트의 여러 파일이 있을 수 있기 때문에 폴더로 생성합니다.
+컴포넌트의 이름은 **PascalCase**로 작성하고, 한 컴포넌트의 여러 파일이 있을 수 있기 때문에 폴더로 생성합니다.
 
 ![Alert 컴포넌트 예시](./components.png)
 
@@ -49,15 +49,34 @@ export { default as Card } from './Card'
 
 제가 쓰는 코드 스니펫들은 [이 곳](https://archive.kidow.me/docs/settings/Code%20Snippets)에 정리해놓았습니다.
 
-### containers
+## services
+
+services는 UI가 아닌, 사용하는 함수와 변수, 인스턴스들을 모두 한 곳에 모아놓는 용도로 간단명료하게 사용하고 있습니다. 그렇기 때문에 그때그때 프로젝트마다 새로 생기면 하위 폴더를 만들어 관리합니다.
+
+### containers 폴더
 
 components도 있지만 containers라는 폴더도 있는데, containers는 UI 구성요소임에는 분명하지만 보통 **재사용**을 잘 하지않는 큰 단위의 컴포넌트들을 모아두고 있습니다. `Header`, `Footer` 처럼, UI를 구성하는 요소지만 재사용
 
-## services
+## services 폴더
 
-services는 컴포넌트에 해당하는 것들을 제외한 모든 기능들을 담은 폴더로 활용하고 있습니다. 주로 `api`, `hooks`, `store`, `utils`, `data` 등이 있으며, 어떤 라이브러리를 쓰느냐에 따라 더 추가해서 쓰기도 합니다.
+services는 UI 구성요소에 해당하는 것들을 제외한 함수, 변수, 인스턴스 등을 담은 폴더로 활용하고 있습니다. 주로 `api`, `hooks`, `store`, `utils`, `data` 등이 있으며, 어떤 라이브러리를 쓰느냐에 따라 더 추가해서 쓰기도 합니다.
 
 ![services 폴더](./services.png)
+
+serivces 폴더 하위의 파일들은 다음과 같이 *index.ts*를 생성한 뒤 여기서 모두 export를 해줍니다.
+
+```typescript
+export { default as request } from './api'
+export * from './hooks'
+export * from './store'
+export * from './utils'
+export * from './data'
+...
+```
+
+이렇게 선언하면 import 시 모두 **services**안에서 선언될 수 있습니다. 이렇게 하는 이유는 가독성을 위해서입니다. MacOS 기준 option+클릭을 누르면 해당 파일이 위치한 곳으로 바로 갈 수 있기 때문에 저는 이것이 딱히 불편하지 않았습니다.
+
+![option(alt) + 클릭](./option_click.gif)
 
 ### api
 
@@ -115,5 +134,121 @@ request.interceptors.response.use(
 export default request
 ```
 
-`create` 메소드를 통해 axios instance를 만들어 줍니다. 
+`create` 메소드를 통해 axios 인스턴스를 생성해 줍니다. 인터셉터를 만들어 두면 request의 경우 모든 요청 시, response의 경우 모든 응답 시에 동일한 작업을 실행할 수 있습니다. 이렇게 세팅해둔 인스턴스를 내보냅니다.
 
+request라는 이름은 마땅히 좋은 이름이 없어서 지었습니다. request는 다음과 같이 사용합니다.
+
+```typescript
+import { request } from 'services'
+
+const Page = () => {
+  ...
+  const get = async () => {
+    try {
+      await request.post('url')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  ...
+}
+```
+
+### hooks
+
+말그대로 접두사 **use**가 붙은 hooks들을 모두 한 곳에 모아놓은 용도로 사용합니다. 직접 만든 hooks를 모두 이 곳에 몰아놓습니다.
+
+```typescript
+// services/hooks/index.tsx
+export function useObjectState() {
+  ...
+}
+
+export const useUser = () => {
+  ...
+}
+
+export function useOnClickOutside() {
+  ...
+}
+```
+
+### store
+
+상태 관리에 대한 코드를 전부 모아놓은 폴더입니다. 현재 제가 주로 쓰는 라이브러리는 *Recoil*입니다. 요새는 상태 관리 라이브러리가 많아졌는데, store 역시도 어떤 라이브러리를 쓰든 간에 *store/index.ts* 내에서 로직을 모두 내보낼 수 있도록 설계합니다.
+
+```typescript
+// services/store/index.ts
+import { atom } from 'recoil'
+
+export const userState = atom<IUser | null>({
+  key: 'userState',
+  default: null
+})
+```
+
+### utils
+
+자주 재사용할 수 있는 **커스텀 함수**들만 모아놓은 폴더입니다. 저는 왠만하면 직접 만들어서 쓸 수 있으면 npm으로 다운받지 않고 직접 선언해서 사용하는 편이라서, 이 폴더를 자주 사용하게 됩니다.
+
+```typescript
+// services/utils/index.ts
+
+export const getRandomString = () => Math.random().toString(36).slice(2);
+
+export function throttle(func: Function, wait: number) {
+  let waiting = false;
+  return function () {
+    if (!waiting) {
+      // @ts-ignore
+      func.apply(this, arguments);
+      waiting = true;
+      setTimeout(() => {
+        waiting = false;
+      }, wait);
+    }
+  };
+}
+
+...
+```
+
+### data
+
+utils가 함수라면 data는 **커스텀 상수**들의 모음입니다. data 안의 값들은 가독성을 위해 전부 **대문자와 snake_case**를 합성하여 네이밍을 합니다.
+
+```typescript
+// services/data/index.ts
+export const IS_DEV = process.env.NODE_ENV === 'development';
+
+export const IS_CLIENT = typeof window !== 'undefined';
+
+export enum AUTH_TYPE {
+  LOGIN = '로그인',
+  SIGN_UP = '회원가입',
+  FIND_PASSWORD = '비밀번호 찾기',
+  RESIGN = '회원탈퇴'
+}
+...
+```
+
+## types
+
+### index.d.ts
+
+타입스크립트를 사용하기 때문에, 직접 만드는 타입들도 따로 모아놓는 폴더로 사용합니다. 타입의 경우는 따로 export하지 않아도 알아서 적용되기 때문에 import를 하겠다고 타입을 내보낼 필요는 없더라구요. index가 아닌 다른 파일도 마찬가지입니다.
+
+```typescript
+// types/index.d.ts
+interface ModalProps {
+  ...
+}
+
+interface User {
+  ...
+}
+```
+
+## 마치며
+
+프로젝트 설계에 있어 제가 가장 중요시 하는 것은 **가독성**입니다. 모든 폴더에 index로 하여금 내보내게 하는 것도 import 시 경로명을 간결하고 통일성있게 하기 위함입니다. 물론 index파일이 나중가면 많이 지저분해질 수도 있습니다.

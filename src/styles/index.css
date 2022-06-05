@@ -94,10 +94,7 @@ $neutral-900: #171717;
 
 #markdown h1,
 #markdown h2,
-#markdown h3,
-#markdown h4,
-#markdown h5,
-#markdown h6 {
+#markdown h3 {
   font-weight: bold;
   padding-left: 16px;
   border-left: 4px solid $neutral-200;
