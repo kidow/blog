@@ -210,6 +210,7 @@ const Template: FC<Props> = ({ data }) => {
           <section
             dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
             itemProp="articleBody"
+            className="text-neutral-200"
             id="markdown"
           />
 

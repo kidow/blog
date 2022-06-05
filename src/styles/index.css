@@ -47,6 +47,11 @@ $neutral-900: #171717;
 .series-container ol {
   padding-left: 0px;
   color: $neutral-200;
+  list-style-type: none !important;
+}
+
+.series-container ul {
+  list-style-type: none !important;
 }
 
 .series-container span {
@@ -85,4 +90,33 @@ $neutral-900: #171717;
 
 #markdown tbody tr {
   border-top: 1px solid $neutral-700;
+}
+
+#markdown h1,
+#markdown h2,
+#markdown h3,
+#markdown h4,
+#markdown h5,
+#markdown h6 {
+  font-weight: bold;
+  padding-left: 16px;
+  border-left: 4px solid $neutral-200;
+}
+
+#markdown ol {
+  list-style-type: decimal;
+}
+
+#markdown ul {
+  list-style-type: disc;
+}
+
+#markdown figcaption {
+  text-align: center;
+  color: $neutral-400;
+}
+
+#markdown code {
+  padding-left: 0.3em;
+  padding-right: 0.3em;
 }

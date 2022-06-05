@@ -49,8 +49,7 @@ module.exports = {
             options: {
               render: {
                 placeholder: 'toc',
-                template: ({ items, name }) => {
-                  return `
+                template: ({ items, name }) => `
                   <div class="series-container">
                     <div>${name}</div>
                     <ol>
@@ -65,7 +64,6 @@ module.exports = {
                     </ol>
                   </div>
                 `
-                }
               },
               resolvers: {
                 slug: (markdownNode) => markdownNode.fields.slug
