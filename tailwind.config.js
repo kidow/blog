@@ -7,6 +7,7 @@ module.exports = {
   plugins: [
     require('prettier-plugin-tailwindcss'),
     require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/typography')
+    require('@tailwindcss/typography'),
+    require('tailwind-scrollbar-hide')
   ]
 }
