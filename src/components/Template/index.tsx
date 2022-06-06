@@ -215,7 +215,7 @@ const Template: FC<Props> = ({ data }) => {
           />
 
           {!!data.markdownRemark.headings.length && (
-            <div className="fixed bottom-16 right-16 z-10 hidden h-[calc(100vh-236px)] w-[calc((100vw-768px)/2-64px)] overflow-auto text-sm text-neutral-500 lg:block">
+            <div className="fixed bottom-16 right-16 z-10 hidden h-[calc(100vh-236px)] w-[calc((100vw-768px)/2-64px)] overflow-auto text-sm text-neutral-500 scrollbar-hide lg:block">
               <ol className="border-l border-neutral-800 !pl-2">
                 {data.markdownRemark.headings.map((item, key) => (
                   <li
