@@ -92,6 +92,15 @@ $neutral-900: #171717;
   border-top: 1px solid $neutral-700;
 }
 
+#markdown h1,
+#markdown h2,
+#markdown h3,
+#markdown h4,
+#markdown h5,
+#markdown h6 {
+  color: $neutral-200;
+}
+
 #markdown h2,
 #markdown h3 {
   font-weight: bold;
