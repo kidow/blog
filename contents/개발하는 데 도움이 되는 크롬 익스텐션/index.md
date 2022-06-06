@@ -58,6 +58,6 @@ Postman처럼 api 요청을 테스트할 수 있는 익스텐션입니다. 헤�
 
 ## 6. [uBlacklist](https://chrome.google.com/webstore/detail/ublacklist/pncfbmialoiaghdehhbnbhkkgmjanfhe)
 
-[uBlacklist](ublacklist.png)
+![uBlacklist](ublacklist.png)
 
 구글 검색 시 보기 싫은 웹사이트들을 검색결과에서 차단해버릴 수 있는 익스텐션입니다. 이 앱은 단순히 개발자여야만 쓸 수 있는 게 아니라서 강추합니다. 👍
