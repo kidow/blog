@@ -131,3 +131,7 @@ $neutral-900: #171717;
 #markdown a:hover {
   text-decoration: underline;
 }
+
+#markdown strong {
+  color: $neutral-200;
+}
