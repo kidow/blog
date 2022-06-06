@@ -136,3 +136,87 @@ useMemo는 함수와 useEffect 사이에 모두 넣습니다.
 api로 요청하는 함수의 경우는 CRUD에 맞게 접두사로 `create`, `get`, `update`, `remove`를 붙여서 이름을 지어줍니다. 만약 각각의 요청하는 함수가 하나만 있다면, 접두사 없이 한 단어로만 짓습니다. 이렇게 하는 이유는, 이 함수가 하나만 있다는 것을 명시하기 위함입니다.
 
 그 외 나머지 함수들은 모두 접두사 `on`을 붙여서 이름을 짓습니다.
+
+## 하위 컴포넌트
+
+두 개 이상의 합성어로 이루어진 컴포넌트의 경우는 어떻게 이쁘게 설계해야할 지를 정말 많이 고민을 했습니다. `Button`과 `ButtonGroup` 컴포넌트를 예로 들어보겠습니다.
+
+예전에는 컴포넌트를 이런 식으로 설계했었습니다.
+
+```typescript
+// components/Button/index.tsx
+import type { FC } from 'react'
+
+export interface Props {}
+interface State {}
+
+const Button: FC<Props> = ({ children }) => {
+  return <button>{children}</button>
+}
+
+export default Button
+```
+
+```typescript
+// components/ButtonGroup/index.tsx
+import type { FC } from 'react'
+import { Button } from 'components'
+
+export interface Props {}
+interface State {}
+
+const ButtonGroup: FC<Props> = () => {
+  return (
+    <div>
+      <Button>1</Button>
+      <Button>2</Button>
+      <Button>3</Button>
+      <Button>4</Button>
+    </div>
+  )
+}
+
+export default ButtonGroup
+```
+
+```typescript
+export { default as Button } from './Button'
+export { default as ButtonGroup } from './ButtonGroup'
+```
+
+만약 Button으로 시작하는 컴포넌트가 계속해서 생길 경우에는, 가독성이 어느 순간 확 안좋아지면서 유지보수가 힘들어지더라구요.
+
+그러다가 `Ant Design`의 방식을 알게 되었는데, 이 방식이 마음에 들어서 이 방식으로 하고 있습니다.
+
+```typescript
+// components/Button/index.tsx
+import type { FC } from 'react'
+import ButtonGroup from './Group'
+
+export interface Props {}
+interface IButton extends FC<Props> {
+  Group: typeof ButtonGroup
+}
+interface State {}
+
+const Button: FC<Props> = ({ children }) => {
+  return <button>{children}</button>
+}
+
+Button.Group = ButtonGroup
+
+export default Button
+```
+
+```typescript
+export { default as Button } from './Button'
+```
+
+이렇게 선언하면 이제 이런식으로 활용이 가능합니다.
+
+```typescript
+import { Button } from 'components'
+;<Button.Group></Button.Group>
+```
+
+`<ButtonGroup />`으로 선언하는 것보다는 훨씬 가독성이 좋아진 것 같습니다. 또한 `Button`만 불러오면 되니 import문 코드량도 줄어들 수 있습니다.

@@ -38,9 +38,7 @@ export enum AUTH_TYPE {
 ### interface
 
 ```typescript
-type TMaxWidth =
-  | 'max-w-xs'
-  | 'max-w-sm'
+type TMaxWidth = 'max-w-xs' | 'max-w-sm'
 
 interface IModal {
   isOpen: boolean
@@ -57,7 +55,7 @@ interface IModal {
 
 객체가 아닌 나머지 타입 변수들은 모두 `type`으로 선언합니다.
 
-type의 경우도 마찬가지로 앞에 `T`를 붙여서 선언한다.
+type의 경우도 마찬가지로 앞에 `T`를 붙여서 선언합니다.
 
 ### namespace
 
@@ -80,4 +78,12 @@ namespace NTable {
 }
 ```
 
-가독성을 위해 `namespace`를 사용하기도 합니다. namespace 역시 명시하기 위해 접두사로 `N`을 붙여서 선언합니다. 다만 하위 타입들에는 접두사를 붙이지 않습니다.
+가독성을 위해 `namespace`를 사용하기도 합니다. namespace 역시 알아보기 쉽게 접두사로 `N`을 붙여서 선언합니다. 다만 하위 타입들에는 접두사를 붙이지 않습니다.
+
+## 마치며
+
+네이밍이라는 게 참 쉽지가 않은 것 같습니다. 오죽하면 프로그래머가 가장 힘든 일 절반이 네이밍이라는 설문조사가 있을 정도니까요.
+
+![네이밍이 절반...](quora.jpg)
+
+그래도 약간의 센스가 필요한 작업이라서, 이름 짓는 법 하나 잘 정해놓으면 절반의 고충을 해결할 수 있다는 얘기일 테니까요.
