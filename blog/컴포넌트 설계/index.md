@@ -144,5 +144,79 @@ api로 요청하는 함수의 경우는 CRUD에 맞게 접두사로 `create`, `g
 예전에는 컴포넌트를 이런 식으로 설계했었습니다.
 
 ```typescript
+// components/Button/index.tsx
+import type { FC } from 'react'
 
+export interface Props {}
+interface State {}
+
+const Button: FC<Props> = ({ children }) => {
+  return <button>{children}</button>
+}
+
+export default Button
 ```
+
+```typescript
+// components/ButtonGroup/index.tsx
+import type { FC } from 'react'
+import { Button } from 'components'
+
+export interface Props {}
+interface State {}
+
+const ButtonGroup: FC<Props> = () => {
+  return (
+    <div>
+      <Button>1</Button>
+      <Button>2</Button>
+      <Button>3</Button>
+      <Button>4</Button>
+    </div>
+  )
+}
+
+export default ButtonGroup
+```
+
+```typescript
+export { default as Button } from './Button'
+export { default as ButtonGroup } from './ButtonGroup'
+```
+
+만약 Button으로 시작하는 컴포넌트가 계속해서 생길 경우에는, 가독성이 어느 순간 확 안좋아지면서 유지보수가 힘들어지더라구요.
+
+그러다가 `Ant Design`의 방식을 알게 되었는데, 이 방식이 마음에 들어서 이 방식으로 하고 있습니다.
+
+```typescript
+// components/Button/index.tsx
+import type { FC } from 'react'
+import ButtonGroup from './Group'
+
+export interface Props {}
+interface IButton extends FC<Props> {
+  Group: typeof ButtonGroup
+}
+interface State {}
+
+const Button: FC<Props> = ({ children }) => {
+  return <button>{children}</button>
+}
+
+Button.Group = ButtonGroup
+
+export default Button
+```
+
+```typescript
+export { default as Button } from './Button'
+```
+
+이렇게 선언하면 이제 이런식으로 활용이 가능합니다.
+
+```typescript
+import { Button } from 'components'
+;<Button.Group></Button.Group>
+```
+
+`<ButtonGroup />`으로 선언하는 것보다는 훨씬 가독성이 좋아진 것 같습니다. 또한 `Button`만 불러오면 되니 import문 코드량도 줄어들 수 있습니다.
