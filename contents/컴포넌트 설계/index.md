@@ -1,5 +1,5 @@
 ---
-title: 유지보수가 쉬운 리액트 코드 짜는 법 - (2) 컴포넌트 설계
+title: 유지보수가 쉬운 리액트 코드 짜는 법 - (3) 컴포넌트 설계
 date: 2022-05-28
 description: 유지보수 하기 쉬운 리액트 컴포넌트 설게. 매우 종요한 파트입니다.
 thumbnail: https://opengraph.kidow.me/api?id=5pvfkcqqo7y
@@ -7,6 +7,8 @@ series: 유지보수가 쉬운 리액트 코드 짜는 법
 order: 3
 keywords: React
 ---
+
+<!-- toc -->
 
 의외로 내용이 많기 때문에 따로 파트를 뺐습니다. 이 시리즈에서는 리액트 컴포넌트를 선언하고 사용할 때 어떠한 규칙을 사용하는 지 자세히 소개해보려고 합니다.
 
@@ -113,7 +115,7 @@ export default Page
 
 여기서 다음과 같은 규칙들을 정해둡니다.
 
-### 1. `useObjectState`는 항상 최상위에
+### 1. useObjectState는 항상 최상위에
 
 [useObjectState](https://archive.kidow.me/docs/hooks/useObjectState)는 제가 직접 만든 hooks로, useState의 인자를 객체로 선언함으로써 모든 state를 한 hooks로 관리할 수 있습니다. state가 컴포넌트에서 가장 핵심인 요소라고 생각해서 최상위에 두었습니다. 만약 state의 초깃값으로 받아와야 할 값이 있다면 예외로 useObjectState보다 위에 선언해줍니다.
 
@@ -121,11 +123,11 @@ export default Page
 
 useObjectState 이 외에 나머지 hooks들은 전부 useObjectState 아래에 별다른 순서 없이 나열해서 사용합니다.
 
-### 3. `useEffect`는 항상 return문 위에
+### 3. useEffect는 항상 return문 위에
 
 return문은 항상 최하단이고, 모든 useEffect는 return문 바로 위에 몰아넣습니다.
 
-### 4. `useMemo`는 useEffect 위에
+### 4. useMemo는 useEffect 위에
 
 useMemo는 함수와 useEffect 사이에 모두 넣습니다.
 
