@@ -23,7 +23,6 @@ const HomePage: FC<{
   }
   path: string
 }> = ({ data, path }) => {
-  console.log('data', data)
   return (
     <main>
       <SEO title="개발자 Kidow 블로그" />
@@ -50,7 +49,7 @@ const HomePage: FC<{
             <li key={item.id}>
               <Link to={item.fields.slug}>
                 <div className="group space-y-2">
-                  <h2 className="h-12 line-clamp-2 group-hover:underline">
+                  <h2 className="h-14 text-lg line-clamp-2 group-hover:underline">
                     {item.frontmatter.title}
                   </h2>
                   <p className="h-[72px] text-neutral-400 line-clamp-3 group-hover:underline">
