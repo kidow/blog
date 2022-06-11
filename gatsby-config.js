@@ -15,7 +15,14 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-postcss',
-    'gatsby-plugin-typescript',
+    {
+      resolve: 'gatsby-plugin-typescript',
+      options: {
+        isTSX: true,
+        jsxPragma: 'jsx',
+        allExtensions: true
+      }
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {

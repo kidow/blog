@@ -1,7 +1,7 @@
 import React from 'react'
 import type { FC } from 'react'
-import { Link, graphql } from 'gatsby'
-import { Footer, SEO } from 'components'
+import { graphql } from 'gatsby'
+import { Card, Footer, SEO } from 'components'
 
 const HomePage: FC<{
   data: {
@@ -12,7 +12,6 @@ const HomePage: FC<{
           title: string
           date: string
           description: string
-          thumbnail: string
           keywords: string
         }
         fields: {
@@ -46,31 +45,14 @@ const HomePage: FC<{
         </div>
         <ul className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {data?.allMarkdownRemark?.nodes.map((item) => (
-            <li key={item.id}>
-              <Link to={item.fields.slug}>
-                <div className="group space-y-2">
-                  <h2 className="h-14 text-lg line-clamp-2 group-hover:underline">
-                    {item.frontmatter.title}
-                  </h2>
-                  <p className="h-[72px] text-neutral-400 line-clamp-3 group-hover:underline">
-                    {item.frontmatter.description}
-                  </p>
-                  <div className="flex flex-wrap gap-3 text-xs md:text-sm">
-                    {item.frontmatter.keywords.split(', ').map((keyword) => (
-                      <span
-                        className="rounded-full bg-neutral-800 py-1 px-3"
-                        key={keyword}
-                      >
-                        {keyword}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="text-sm text-neutral-400">
-                    {item.frontmatter.date}
-                  </div>
-                </div>
-              </Link>
-            </li>
+            <Card
+              key={item.id}
+              title={item.frontmatter.title}
+              date={item.frontmatter.date}
+              description={item.frontmatter.description}
+              keywords={item.frontmatter.keywords}
+              slug={item.fields.slug}
+            />
           ))}
         </ul>
       </div>
@@ -88,7 +70,6 @@ export const query = graphql`
           title
           date(fromNow: true, locale: "ko")
           description
-          thumbnail
           keywords
         }
         fields {

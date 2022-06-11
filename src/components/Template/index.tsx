@@ -131,9 +131,9 @@ const Template: FC<Props> = ({ data }) => {
         url={data.markdownRemark.fields.slug}
       />
 
-      <section className="container max-w-screen-md mx-auto">
+      <section className="container mx-auto max-w-screen-md">
         <div className="my-10 space-y-4 text-center">
-          <div className="flex items-center justify-between max-w-xs px-6 mx-auto mb-10 text-sm text-neutral-500">
+          <div className="mx-auto mb-10 flex max-w-xs items-center justify-between px-6 text-sm text-neutral-500">
             <a
               href="https://resume.kidow.me"
               target="_blank"
@@ -166,7 +166,7 @@ const Template: FC<Props> = ({ data }) => {
               ?.split(', ')
               .map((keyword) => (
                 <span
-                  className="px-3 py-1 rounded-full bg-neutral-800"
+                  className="rounded-full bg-neutral-800 px-3 py-1"
                   key={keyword}
                 >
                   {keyword}
@@ -176,31 +176,31 @@ const Template: FC<Props> = ({ data }) => {
         </div>
       </section>
 
-      <article className="container max-w-screen-md min-h-screen mx-auto">
-        <div className="relative px-6 prose-sm prose-invert md:prose-base">
+      <article className="container mx-auto min-h-screen max-w-screen-md">
+        <div className="prose-sm prose-invert relative px-6 md:prose-base">
           <div className="fixed top-[180px] right-[calc((100vw-768px)/2+768px)] hidden lg:block">
-            <div className="z-10 flex flex-col gap-3 p-2 border rounded-full border-neutral-700 bg-neutral-800">
+            <div className="z-10 flex flex-col gap-3 rounded-full border border-neutral-700 bg-neutral-800 p-2">
               <button
                 onClick={onCopyLink}
-                className="p-2 border rounded-full border-neutral-700 hover:border-neutral-500"
+                className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500"
               >
                 <img src="/links.svg" alt="" className="!m-0 h-6 w-6" />
               </button>
               <button
                 onClick={onShareFacebook}
-                className="p-2 border rounded-full border-neutral-700 hover:border-neutral-500"
+                className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500"
               >
                 <img src="/facebook.svg" alt="" className="!m-0 h-6 w-6" />
               </button>
               <button
                 onClick={onShareTwitter}
-                className="p-2 border rounded-full border-neutral-700 hover:border-neutral-500"
+                className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500"
               >
                 <img src="/twitter.svg" alt="" className="!m-0 h-6 w-6" />
               </button>
               <button
                 onClick={onShareKakaoTalk}
-                className="p-2 border rounded-full border-neutral-700 hover:border-neutral-500"
+                className="rounded-full border border-neutral-700 p-2 hover:border-neutral-500"
               >
                 <img src="/kakao-talk.svg" alt="" className="!m-0 h-6 w-6" />
               </button>
@@ -257,7 +257,7 @@ const Template: FC<Props> = ({ data }) => {
         </div>
 
         <div className="px-6 pb-20">
-          <div className="flex justify-between py-10 mt-5 border-y border-neutral-800">
+          <div className="mt-5 flex justify-between border-y border-neutral-800 py-10">
             <div>
               {!!data.previous && (
                 <>
