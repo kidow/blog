@@ -128,10 +128,6 @@ $neutral-900: #171717;
   color: $neutral-400;
 }
 
-#markdown code {
-  padding-right: 0.3em;
-}
-
 #markdown a {
   color: #0891b2;
 }
@@ -145,13 +141,14 @@ $neutral-900: #171717;
 }
 
 .gatsby-highlight-code-line {
-  background-color: #262626;
+  background-color: #164e63;
   display: block;
   margin-right: -1em;
   margin-left: -1em;
   padding-right: 1em;
   padding-left: 0.75em;
-  border-left: 0.25em solid #404040;
+  border-left: 0.25em solid #0891b2;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 }
 
 .command-line-prompt > span:before {
@@ -173,4 +170,11 @@ $neutral-900: #171717;
 
 .command-line-prompt > span[data-prompt]:before {
   content: attr(data-prompt);
+}
+
+.language-text {
+  padding-top: 0.2em !important;
+  padding-bottom: 0.2em !important;
+  padding-left: 0.3em !important;
+  padding-right: 0.3em !important;
 }

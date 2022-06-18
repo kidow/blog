@@ -1,0 +1,24 @@
+import React from 'react'
+import type { FC } from 'react'
+
+export interface Props {}
+interface State {}
+
+const Dialog: FC<Props> = () => {
+  const [isOpen, setIsOpen] = React.useState(false)
+  return (
+    <div className="flex h-40 w-full items-center justify-center rounded bg-neutral-200">
+      <button
+        onClick={() => setIsOpen(true)}
+        className="rounded border border-neutral-700 py-2 px-3 text-neutral-900"
+      >
+        Open
+      </button>
+      <dialog open={isOpen}>
+        <p>안녕하세요!</p>
+      </dialog>
+    </div>
+  )
+}
+
+export default Dialog

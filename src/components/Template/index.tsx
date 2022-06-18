@@ -1,9 +1,19 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import type { FC } from 'react'
 import { graphql, Link } from 'gatsby'
-import { BackTop, Footer, SEO, Comment } from 'components'
+import {
+  BackTop,
+  Footer,
+  SEO,
+  Comment,
+  Dialog,
+  DialogShow,
+  DialogShowModal,
+  DialogCustomView
+} from 'components'
 import classnames from 'classnames'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { MDXProvider } from '@mdx-js/react'
 
 export interface Props {
   data: {
@@ -206,9 +216,18 @@ const Template: FC<Props> = ({ data }) => {
             </div>
           </div>
 
-          <section className="text-neutral-400" id="markdown">
-            <MDXRenderer>{data.mdx.body}</MDXRenderer>
-          </section>
+          <MDXProvider
+            components={{
+              Dialog,
+              DialogShow,
+              DialogShowModal,
+              DialogCustomView
+            }}
+          >
+            <section className="text-neutral-400" id="markdown">
+              <MDXRenderer>{data.mdx.body}</MDXRenderer>
+            </section>
+          </MDXProvider>
 
           {!!data.mdx.headings.length && (
             <div className="fixed bottom-16 right-16 z-10 hidden h-[calc(100vh-236px)] w-[calc((100vw-768px)/2-64px)] overflow-auto text-sm text-neutral-500 scrollbar-hide lg:block">
