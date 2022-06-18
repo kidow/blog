@@ -37,13 +37,13 @@ export default Component
 
 ### interface Props, State
 
-Props와 State에 해당하는 타입을 이름그대로 지었습니다. Props를 export한 이유는, jest나 storybook 등을 사용할 때 Props가 필요하기 때문입니다.
+Props와 State에 해당하는 타입을 이름그대로 지었습니다. Props를 export하는 이유는, jest나 storybook 등을 사용할 때 해당 Props를 재활용하기 때문입니다.
 
 ### state
 
 `useState` 등으로 선언하는 변수들은 타입에 따라, 용도에 따라 선언하는 기준을 다르게 두고 있습니다. 모든 변수는 **camelCase**로 선언합니다.
 
-```typescript
+```typescript{1}
 interface State {
   isLoading: boolean
   password: string
@@ -63,7 +63,7 @@ interface State {
 
 다음 예시를 통해 설명해보겠습니다.
 
-```typescript
+```typescript{13}
 import { useEffect, useMemo } from 'react'
 import { useRouter } from 'next'
 import { useObjectState, request } from 'services'
@@ -75,14 +75,17 @@ interface State {
 }
 
 const PostPage = () => {
+  // useObjectState는 항상 최상위에
   const [{ isLoading, id, password }, setState] = useObjectState<State>({
     isLoading: false,
     id: '',
     password: ''
   })
+  // 나머지 Hooks들은 바로 아래에
   const { query } = useRouter()
   const [user] = useUser()
 
+  // HTTP get에 해당하는 함수는 접두사 get으로 네이밍
   const get = async () => {
     try {
       await request.get('/posts')
@@ -91,6 +94,7 @@ const PostPage = () => {
     }
   }
 
+  // HTTP post에 해당하는 함수는 접두사 create로 네이밍
   const create = async () => {
     try {
       await request.post('/posts', {})
@@ -99,11 +103,14 @@ const PostPage = () => {
     }
   }
 
+  // useMemo는 useEffect 위에
   const isLoggedIn: boolean = useMemo(() => !!user?.id, [user])
 
+  // useEffect는 return문 바로 위에
   useEffect(() => {
     get()
   }, [])
+
   useEffect(() => {
     ...
   }, [user])
@@ -167,6 +174,7 @@ import { Button } from 'components'
 export interface Props {}
 interface State {}
 
+// ButtonGroup이라는 컴포넌트를 따로 만듬
 const ButtonGroup: FC<Props> = () => {
   return (
     <div>
@@ -184,11 +192,13 @@ export default ButtonGroup
 ```typescript
 export { default as Button } from './Button'
 export { default as ButtonGroup } from './ButtonGroup'
+export { default as ButtonContainer } from './ButtonContainer'
+// ... 또 다른 Button 관련 컴포넌트들이...
 ```
 
-만약 Button으로 시작하는 컴포넌트가 계속해서 생길 경우에는, 가독성이 어느 순간 확 안좋아지면서 유지보수가 힘들어지더라구요.
+만약 Button과 관련된 컴포넌트가 계속해서 생길 경우에는, 가독성이 어느 순간 확 안좋아지면서 유지보수가 힘들어지더라구요.
 
-그러다가 `Ant Design`의 방식을 알게 되었는데, 이 방식이 마음에 들어서 이 방식으로 하고 있습니다.
+그러다가 `Ant Design`의 컴포넌트 설계 방식을 알게 되었는데, 이 방식이 마음에 들어서 이 방식으로 하고 있습니다.
 
 ```typescript
 // components/Button/index.tsx
@@ -217,8 +227,7 @@ export { default as Button } from './Button'
 이렇게 선언하면 이제 이런식으로 활용이 가능합니다.
 
 ```typescript
-import { Button } from 'components'
-;<Button.Group></Button.Group>
+<Button.Group></Button.Group>
 ```
 
 `<ButtonGroup />`으로 선언하는 것보다는 훨씬 가독성이 좋아진 것 같습니다. 또한 `Button`만 불러오면 되니 import문 코드량도 줄어들 수 있습니다.

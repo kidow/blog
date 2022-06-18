@@ -37,7 +37,7 @@ module.exports = {
           {
             resolve: 'gatsby-remark-autolink-headers',
             options: {
-              elements: ['h1', 'h2', 'h3']
+              elements: ['h1', 'h2', 'h3', 'h4']
             }
           },
           'gatsby-remark-prismjs-copy-button',

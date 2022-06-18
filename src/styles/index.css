@@ -129,7 +129,6 @@ $neutral-900: #171717;
 }
 
 #markdown code {
-  padding-left: 0.3em;
   padding-right: 0.3em;
 }
 
@@ -143,4 +142,35 @@ $neutral-900: #171717;
 
 #markdown strong {
   color: $neutral-200;
+}
+
+.gatsby-highlight-code-line {
+  background-color: #262626;
+  display: block;
+  margin-right: -1em;
+  margin-left: -1em;
+  padding-right: 1em;
+  padding-left: 0.75em;
+  border-left: 0.25em solid #404040;
+}
+
+.command-line-prompt > span:before {
+  color: #999;
+  content: ' ';
+  display: block;
+  padding-right: 0.8em;
+}
+
+/* Prompt for all users */
+.command-line-prompt > span[data-user]:before {
+  content: '[' attr(data-user) '@' attr(data-host) '] $';
+}
+
+/* Prompt for root */
+.command-line-prompt > span[data-user='root']:before {
+  content: '[' attr(data-user) '@' attr(data-host) '] #';
+}
+
+.command-line-prompt > span[data-prompt]:before {
+  content: attr(data-prompt);
 }
