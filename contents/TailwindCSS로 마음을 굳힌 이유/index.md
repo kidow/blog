@@ -6,7 +6,7 @@ thumbnail: https://opengraph.kidow.me/api?id=s81ow0mde6f
 keywords: TailwindCSS, SCSS, Styled Components
 ---
 
-## styled components...
+## styled components
 
 프론트엔드에 처음 입문하고 React를 시작했을 때 처음 접했던 css 라이브러리가 `styled-components` 였습니다. 당시에는 **CSS-in-JS** 라고 해서 js 파일에서 css와 js를 한 번에 다룬다는 게 매력적이었었죠.
 
@@ -83,7 +83,7 @@ styled components가 **너무 많은 코드량을 잡아먹는다**라는 게 �
 
 만약 저 코드에서 고쳐야 할 부분이 리액트 쪽 코드였다면, 번거롭게 파일에서 스크롤을 내리고 다녀야 합니다. 배치를 반대로 한다고 해도 거기서 거기인 셈이죠.
 
-## scss...
+## scss
 
 이런 식으로 코드 짜는 건 너무 이상하다 싶어 눈을 돌린 곳이 **SCSS** 였습니다. '그래, 차라리 파일을 분리해서라도 정석적인 게 좋을 때도 있지'라고 생각을 했죠.
 
@@ -191,7 +191,7 @@ animation: bounce 1s infinite;
 
 엄청나지 않나요? 위의 긴 코드가 단 한 줄로 완성됐습니다!
 
-### 디버깅도 쉽다?
+### 디버깅도 쉽다
 
 의도치 않게 느끼게 된 건데, Tailwind로 짠 코드들은 각각의 html 태그가 클래스명이 천차만별이기 떄문에 의외로 문제가 생긴 코드를 찾는 게 엄청 빠릅니다. 개발자 도구에서 클래스명을 복사하고 에디터에서 검색을 하면, 해당 클래스명이 바로 검색이 되기 떄문이죠.
 
@@ -199,7 +199,7 @@ animation: bounce 1s infinite;
 
 ![검색하면 바로 나온다.](search.png)
 
-## 단점은?
+## 단점이 있다면
 
 단점이라기보다는 아쉬운 점과 주의사항으로 나눠 생각해 볼 수 있을 것 같습니다.
 

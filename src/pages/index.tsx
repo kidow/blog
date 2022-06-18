@@ -5,7 +5,7 @@ import { Card, Footer, SEO } from 'components'
 
 const HomePage: FC<{
   data: {
-    allMarkdownRemark: {
+    allMdx: {
       nodes: Array<{
         id: string
         frontmatter: {
@@ -44,7 +44,7 @@ const HomePage: FC<{
           </a>
         </div>
         <ul className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {data?.allMarkdownRemark?.nodes.map((item) => (
+          {data?.allMdx?.nodes.map((item) => (
             <Card
               key={item.id}
               title={item.frontmatter.title}
@@ -63,14 +63,14 @@ const HomePage: FC<{
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         id
         frontmatter {
           title
           date(fromNow: true, locale: "ko")
-          description
           keywords
+          description
         }
         fields {
           slug

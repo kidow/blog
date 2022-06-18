@@ -3,11 +3,12 @@ import type { FC } from 'react'
 import { graphql, Link } from 'gatsby'
 import { BackTop, Footer, SEO, Comment } from 'components'
 import classnames from 'classnames'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 export interface Props {
   data: {
-    markdownRemark: {
-      html: string
+    mdx: {
+      body: string
       frontmatter: {
         title: string
         date: string
@@ -18,7 +19,7 @@ export interface Props {
       fields: {
         slug: string
       }
-      headings: Array<{ id: string; depth: number; value: string }>
+      headings: Array<{ depth: number; value: string }>
     }
     previous: {
       fields: {
@@ -50,14 +51,14 @@ const Template: FC<Props> = ({ data }) => {
         : document.body.scrollTop
     )
 
-  const isActive = (id: string, index: number): boolean => {
+  const isActive = (value: string, index: number): boolean => {
     if (typeof document === 'undefined') return false
-    const element = document.getElementById(id)
+    const element = document.getElementById(value)
     if (!element) return false
     const isOver = scrollTop - 180 >= element.offsetTop
-    if (!data.markdownRemark.headings[index + 1]) return isOver
+    if (!data.mdx.headings[index + 1]) return isOver
     const nextElement = document.getElementById(
-      data.markdownRemark.headings[index + 1].id
+      data.mdx.headings[index + 1].value.replaceAll(' ', '-')
     )
     if (!nextElement) return false
     const isNextUnder = scrollTop - 180 < nextElement.offsetTop
@@ -116,7 +117,7 @@ const Template: FC<Props> = ({ data }) => {
       window.Kakao?.init(process.env.GATSBY_KAKAO_API_KEY)
     }
 
-    if (!data.markdownRemark.headings) return
+    if (!data.mdx.headings) return
     window.addEventListener('scroll', onScroll)
     return () => {
       window.removeEventListener('scroll', onScroll)
@@ -125,10 +126,10 @@ const Template: FC<Props> = ({ data }) => {
   return (
     <>
       <SEO
-        title={data.markdownRemark.frontmatter.title}
-        description={data.markdownRemark.frontmatter.description}
-        thumbnail={data.markdownRemark.frontmatter.thumbnail}
-        url={data.markdownRemark.fields.slug}
+        title={data.mdx.frontmatter.title}
+        description={data.mdx.frontmatter.description}
+        thumbnail={data.mdx.frontmatter.thumbnail}
+        url={data.mdx.fields.slug}
       />
 
       <section className="container mx-auto max-w-screen-md">
@@ -156,22 +157,20 @@ const Template: FC<Props> = ({ data }) => {
             itemProp="headline"
             className="px-10 text-2xl font-extrabold tracking-tight text-neutral-200 md:text-3xl"
           >
-            {data.markdownRemark.frontmatter.title}
+            {data.mdx.frontmatter.title}
           </h1>
           <div className="text-sm text-neutral-500">
-            {data.markdownRemark.frontmatter.date}
+            {data.mdx.frontmatter.date}
           </div>
           <div className="flex flex-wrap justify-center gap-3 text-xs md:text-sm">
-            {data.markdownRemark.frontmatter.keywords
-              ?.split(', ')
-              .map((keyword) => (
-                <span
-                  className="rounded-full bg-neutral-800 px-3 py-1"
-                  key={keyword}
-                >
-                  {keyword}
-                </span>
-              ))}
+            {data.mdx.frontmatter.keywords?.split(', ').map((keyword) => (
+              <span
+                className="rounded-full bg-neutral-800 px-3 py-1"
+                key={keyword}
+              >
+                {keyword}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -207,25 +206,29 @@ const Template: FC<Props> = ({ data }) => {
             </div>
           </div>
 
-          <section
-            dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
-            itemProp="articleBody"
-            className="text-neutral-400"
-            id="markdown"
-          />
+          <section className="text-neutral-400" id="markdown">
+            <MDXRenderer>{data.mdx.body}</MDXRenderer>
+          </section>
 
-          {!!data.markdownRemark.headings.length && (
+          {!!data.mdx.headings.length && (
             <div className="fixed bottom-16 right-16 z-10 hidden h-[calc(100vh-236px)] w-[calc((100vw-768px)/2-64px)] overflow-auto text-sm text-neutral-500 scrollbar-hide lg:block">
               <ol className="border-l border-neutral-800 !pl-2">
-                {data.markdownRemark.headings.map((item, key) => (
+                {data.mdx.headings.map((item, key) => (
                   <li
                     className={classnames('duration-150', {
+                      'ml-3': item.depth === 4,
                       'ml-2': item.depth === 3,
-                      'scale-105 text-neutral-50': isActive(item.id, key)
+                      'scale-105 text-neutral-50': isActive(
+                        item.value.replaceAll(' ', '-'),
+                        key
+                      )
                     })}
                     key={key}
                   >
-                    <Link className="hover:text-neutral-200" to={`#${item.id}`}>
+                    <Link
+                      className="hover:text-neutral-200"
+                      to={`#${item.value.replaceAll(' ', '-')}`}
+                    >
                       {item.value}
                     </Link>
                   </li>
@@ -296,8 +299,8 @@ const Template: FC<Props> = ({ data }) => {
 
 export const pageQuery = graphql`
   query postBySlug($id: String!, $previousPostId: String, $nextPostId: String) {
-    markdownRemark(id: { eq: $id }) {
-      html
+    mdx(id: { eq: $id }) {
+      body
       frontmatter {
         title
         date(formatString: "YYYY년 MM월 DD일", locale: "ko")
@@ -310,11 +313,10 @@ export const pageQuery = graphql`
       }
       headings {
         depth
-        id
         value
       }
     }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
+    previous: mdx(id: { eq: $previousPostId }) {
       fields {
         slug
       }
@@ -322,7 +324,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    next: markdownRemark(id: { eq: $nextPostId }) {
+    next: mdx(id: { eq: $nextPostId }) {
       fields {
         slug
       }

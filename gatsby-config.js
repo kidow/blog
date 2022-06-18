@@ -31,13 +31,15 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: 'gatsby-plugin-mdx',
       options: {
-        plugins: [
+        extensions: ['.md', '.mdx'],
+        gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-autolink-headers',
             options: {
-              elements: ['h1', 'h2', 'h3', 'h4']
+              elements: ['h1', 'h2', 'h3', 'h4'],
+              maintainCase: true
             }
           },
           'gatsby-remark-prismjs-copy-button',
