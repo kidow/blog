@@ -130,6 +130,7 @@ $neutral-900: #171717;
 
 #markdown a {
   color: #0891b2;
+  word-break: break-all;
 }
 
 #markdown a:hover {
