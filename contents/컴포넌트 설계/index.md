@@ -10,7 +10,7 @@ keywords: React
 
 <!-- toc -->
 
-의외로 내용이 많기 때문에 따로 파트를 뺐습니다. 이 시리즈에서는 리액트 컴포넌트를 선언하고 사용할 때 어떠한 규칙을 사용하는 지 자세히 소개해보려고 합니다.
+의외로 내용이 많기 때문에 개별 파트로 뺐습니다. 이 시리즈에서는 리액트 컴포넌트를 선언하고 사용할 때 어떠한 규칙을 사용하는 지 자세히 소개해보려고 합니다.
 
 ## 선언
 
@@ -200,7 +200,7 @@ export { default as ButtonContainer } from './ButtonContainer'
 
 그러다가 `Ant Design`의 컴포넌트 설계 방식을 알게 되었는데, 이 방식이 마음에 들어서 이 방식으로 하고 있습니다.
 
-```typescript
+```typescript{6-8,15}
 // components/Button/index.tsx
 import type { FC } from 'react'
 import ButtonGroup from './Group'

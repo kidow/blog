@@ -16,11 +16,11 @@ keywords: React, 유지보수
 
 ![프로젝트 구조](./directorying.png)
 
-components, pages, public, styles는 원래 Next.js에 있는 폴더지만 containers, services, types는 새로 만든 폴더입니다.
+components, pages, public, styles는 원래 CLI로 생성하면 기본적으로 만들어지는 폴더지만 containers, services, types는 제가 새로 만든 폴더입니다.
 
 ## components, 그리고 containers
 
-components는 말 그대로 구성요소 모음으로, 공용으로 쓰이는 가장 작은 단위에 속하는 것들만을 모아 놓은 폴더입니다.
+components는 말 그대로 구성요소 모음으로, 공용으로 쓰이는 가장 작은 단위에 속하는 UI 구성요소들만을 모아 놓은 폴더입니다.
 
 여러 번 사용될 수 있는 `Input`, `Button` 같은 것들이 대표적인 컴포넌트입니다.
 
@@ -55,7 +55,7 @@ services는 UI가 아닌, 사용하는 함수와 변수, 인스턴스들을 모�
 
 ### containers 폴더
 
-components도 있지만 containers라는 폴더도 있는데, containers는 UI 구성요소임에는 분명하지만 보통 **재사용**을 잘 하지않는 큰 단위의 컴포넌트들을 모아두고 있습니다. `Header`, `Footer` 처럼, UI를 구성하는 요소지만 재사용
+components도 있지만 containers라는 폴더도 있는데, containers는 UI 구성요소임에는 분명하지만 보통 **재사용**을 잘 하지않는 큰 단위의 컴포넌트들을 모아두고 있습니다. `Header`, `Footer` 처럼, UI를 구성하는 요소지만 재사용은 잘 하지 않는 구성요소들을 모아두는 용도로 사용합니다.
 
 ## services 폴더
 
@@ -85,7 +85,7 @@ api 관련 코드들만 모아 놓고 쓰는 폴더입니다. 주로 사용하�
 ```typescript
 // services/api/index.ts
 import axios from 'axios'
-import type { AxiosError } from 'axios';
+import type { AxiosError } from 'axios'
 
 const IS_DEV = process.env.NODE_ENV === 'development'
 
@@ -116,20 +116,18 @@ request.interceptors.request.use((config) => {
   return config
 })
 
-request.interceptors.response.use(
-  ({ data, config }) => {
-    if (IS_DEV) {
-      console.log(
-        '%c%s', 
-        'color: #d9480f',
-        `${config.method?.toUpperCase()} ${config.url} | data:`
-      )
-      if (Array.isArray(data)) console.log(data)
-      else console.table(data)
-    }
-    return data
+request.interceptors.response.use(({ data, config }) => {
+  if (IS_DEV) {
+    console.log(
+      '%c%s',
+      'color: #d9480f',
+      `${config.method?.toUpperCase()} ${config.url} | data:`
+    )
+    if (Array.isArray(data)) console.log(data)
+    else console.table(data)
   }
-)
+  return data
+})
 
 export default request
 ```
@@ -175,7 +173,7 @@ export function useOnClickOutside() {
 
 ### store
 
-상태 관리에 대한 코드를 전부 모아놓은 폴더입니다. 현재 제가 주로 쓰는 라이브러리는 *Recoil*입니다. 요새는 상태 관리 라이브러리가 많아졌는데, store 역시도 어떤 라이브러리를 쓰든 간에 *store/index.ts* 내에서 로직을 모두 내보낼 수 있도록 설계합니다.
+상태 관리에 대한 코드를 전부 모아놓은 폴더입니다. 현재 제가 주로 쓰는 라이브러리는 *Recoil*입니다. 요새는 상태 관리 라이브러리가 많아졌는데, store 역시도 어떤 라이브러리를 쓰든 간에 _store/index.ts_ 내에서 로직을 모두 내보낼 수 있도록 설계합니다.
 
 ```typescript
 // services/store/index.ts
@@ -232,6 +230,61 @@ export enum AUTH_TYPE {
 ...
 ```
 
+### event
+
+22년 6월 기준 Internet Explorer가 지원이 종료되면서, Web API 중 하나인 [`CustomEvent`](https://developer.mozilla.org/ko/docs/Web/API/CustomEvent/CustomEvent)를 서비스에 도입할 수 있게 되었습니다. CustomEvent는 흔히 잘 알고 있는 `addEventListner`에서 이벤트 리스너를 직접 만들 수 있게 해주는 API인데, 상태 관리 라이브러리를 전역 변수 관리 용도로 사용한다면, CustomEvent는 전역 함수 관리 용도로 사용합니다. event 코드는 다음과 같이 고정으로 작성해두고 사용합니다.
+
+```typescript
+export const add = (
+  type: string,
+  listener: EventListenerOrEventListenerObject
+) => window.addEventListener(type, listener)
+
+export const remove = (
+  type: string,
+  listener: EventListenerOrEventListenerObject
+) => window.removeEventListener(type, listener)
+
+export const once = (type: string, listener: any) => {
+  const emitOnce = (event: any) => {
+    listener(event)
+    remove(type, emitOnce)
+  }
+
+  add(type, emitOnce)
+}
+
+export function emit<T>(type: string, detail?: T) {
+  const event = new CustomEvent<T>(type, { detail })
+  window.dispatchEvent(event)
+}
+```
+
+```typescript
+export * as EventListener from './event'
+```
+
+예를 들면 다음과 같이 사용합니다.
+
+```typescript
+const [isOpen, setIsOpen] = useState<boolean>(false)
+
+const onBackdrop = ({ detail }: any) => setIsOpen(detail.open)
+
+useEffect(() => {
+  EventListener.add('backdrop', onBackdrop)
+  return () => EventListener.remove('backdrop', onBackdrop)
+}, [])
+
+<button
+  onClick={() => EventListener.emit('backdrop', { detail: { open: true } })}
+>
+  Open
+</button>
+```
+
+한 번 이벤트 리스너가 등록이 되면, 어떤 코드에서건 `emit`을 실행하면 리스너의 함수가 실행이 가능해 집니다.
+
 ## types
 
 ### index.d.ts
@@ -244,11 +297,11 @@ interface ModalProps {
   ...
 }
 
-interface User {
+interface IUser {
   ...
 }
 ```
 
 ## 마치며
 
-프로젝트 설계에 있어 제가 가장 중요시 하는 것은 **가독성**입니다. 모든 폴더에 index로 하여금 내보내게 하는 것도 import 시 경로명을 간결하고 통일성있게 하기 위함입니다. 물론 index파일이 나중가면 많이 지저분해질 수도 있습니다.
+프로젝트 설계에 있어 제가 가장 중요시 하는 것은 **가독성**입니다. 모든 폴더에 index로 하여금 내보내게 하는 것도 import 시 경로명을 간결하고 통일성있게 하기 위함입니다.
