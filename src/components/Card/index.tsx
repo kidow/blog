@@ -32,7 +32,9 @@ const Card: FC<Props> = ({ title, date, description, keywords, slug }) => {
                     keyword === 'TailwindCSS',
                   'border border-[#bf4080] text-[#bf4080]': keyword === 'SCSS',
                   'border border-[#da936a] text-[#da936a]':
-                    keyword === 'Styled Components'
+                    keyword === 'Styled Components',
+                  'border border-[#25c19f] text-[#25c19f]':
+                    keyword === 'Docusaurus'
                 })}
                 key={keyword}
               >
