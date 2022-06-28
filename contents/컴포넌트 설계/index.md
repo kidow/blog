@@ -1,7 +1,7 @@
 ---
 title: 유지보수가 쉬운 리액트 코드 짜는 법 - (3) 컴포넌트 설계
 date: 2022-05-28
-description: 유지보수 하기 쉬운 리액트 컴포넌트 설게. 매우 종요한 파트입니다.
+description: 의외로 내용이 많기 때문에 개별 파트로 뺐습니다. 이 시리즈에서는 리액트 컴포넌트를 선언하고 사용할 때 어떠한 규칙을 사용하는 지 자세히 소개해보려고 합니다.
 thumbnail: https://opengraph.kidow.me/api?id=5pvfkcqqo7y
 series: 유지보수가 쉬운 리액트 코드 짜는 법
 order: 3

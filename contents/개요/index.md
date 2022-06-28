@@ -1,7 +1,7 @@
 ---
 title: 유지보수가 쉬운 리액트 코드 짜는 법 - (0) 개요
 date: 2022-05-25
-description: 리액트 코드를 설계하는 과정을 정리해 보기로 했습니다.
+description: 지금까지 4년 넘게 웹 개발 공부를 해오면서 익힌 개발 노하우들을 정리하고, 꾸준히 업데이트를 해보려 합니다.
 thumbnail: https://opengraph.kidow.me/api?id=vk6mr8ziy4p
 series: 유지보수가 쉬운 리액트 코드 짜는 법
 order: 0

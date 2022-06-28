@@ -1,7 +1,7 @@
 ---
 title: TailwindCSS로 마음을 굳힌 이유
 date: 2022-06-15
-description: CSS에서 Styled Components, SCSS를 거치고 TailwindCSS로 정착하게 된 스토리를 공유합니다.
+description: 프론트엔드에 처음 입문하고 React를 시작했을 때 처음 접했던 css 라이브러리가 styled-components였습니다.
 thumbnail: https://opengraph.kidow.me/api?id=s81ow0mde6f
 keywords: TailwindCSS, SCSS, Styled Components
 ---

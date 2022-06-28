@@ -20,9 +20,7 @@ const Card: FC<Props> = ({ title, date, description, keywords, slug }) => {
           <h2 className="text-lg line-clamp-2 group-hover:underline">
             {title}
           </h2>
-          <p className="text-neutral-400 line-clamp-3 group-hover:underline">
-            {description}
-          </p>
+          <p className="text-neutral-400 line-clamp-3">{description}</p>
           <div className="flex flex-wrap gap-3 text-xs md:text-sm">
             {keywords.split(', ').map((keyword) => (
               <span
@@ -34,7 +32,9 @@ const Card: FC<Props> = ({ title, date, description, keywords, slug }) => {
                   'border border-[#da936a] text-[#da936a]':
                     keyword === 'Styled Components',
                   'border border-[#25c19f] text-[#25c19f]':
-                    keyword === 'Docusaurus'
+                    keyword === 'Docusaurus',
+                  'border border-[#FF528C] text-[#FF528C]':
+                    keyword === 'Storybook'
                 })}
                 key={keyword}
               >

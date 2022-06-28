@@ -1,7 +1,7 @@
 ---
 title: 개발하는 데 도움이 되는 크롬 익스텐션
 date: 2022-06-06
-description: 가급적 많이 언급이 되지 않는 것들로 꾸려봤습니다.
+description: 개발하면서 유용하게 사용하고 있는 크롬 익스텐션들을 소개해보고자 합니다.
 thumbnail: https://opengraph.kidow.me/api?id=ecrnpvmva0t
 keywords: Chrome Extensions
 ---
