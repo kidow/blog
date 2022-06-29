@@ -33,13 +33,13 @@ const Footer: FC<Props> = ({ path }) => {
               김동욱
             </a>
           </div>
-          <Link
+          <a
             className="text-teal-600 hover:underline"
             target="_blank"
-            to="mailto:wcgo2ling@gmail.com"
+            href="mailto:wcgo2ling@gmail.com"
           >
             wcgo2ling@gmail.com
-          </Link>
+          </a>
 
           <div className="mt-4 border-t border-neutral-700 pt-4 text-neutral-600">
             © {new Date().getFullYear()} kidow. All right reserved.
