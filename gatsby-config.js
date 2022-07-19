@@ -15,6 +15,15 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-postcss',
+    'gatsby-plugin-advanced-sitemap',
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://blog.kidow.me',
+        sitemap: 'https://blog.kidow.me/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    },
     {
       resolve: 'gatsby-plugin-typescript',
       options: {
@@ -89,7 +98,6 @@ module.exports = {
         id: 'GTM-TFHQLMX'
       }
     },
-    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-root-import',
       options: {
