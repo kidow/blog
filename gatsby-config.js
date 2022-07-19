@@ -19,7 +19,7 @@ module.exports = {
       resolve: 'gatsby-plugin-advanced-sitemap',
       options: {
         output: '/sitemap.xml',
-        exclude: ['/404.html']
+        exclude: ['/404.html', '/404', '/offline-plugin-app-shell-fallback']
       }
     },
     {
