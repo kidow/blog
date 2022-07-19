@@ -15,7 +15,13 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-postcss',
-    'gatsby-plugin-advanced-sitemap',
+    {
+      resolve: 'gatsby-plugin-advanced-sitemap',
+      options: {
+        output: '/sitemap.xml',
+        exclude: ['/404.html']
+      }
+    },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
