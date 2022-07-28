@@ -192,7 +192,7 @@ export const userState = atom<IUser | null>({
 ```typescript
 // services/utils/index.ts
 
-export const getRandomString = () => Math.random().toString(36).slice(2);
+export const randomString = () => Math.random().toString(36).slice(2);
 
 export function throttle(func: Function, wait: number) {
   let waiting = false;
