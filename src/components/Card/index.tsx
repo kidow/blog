@@ -2,6 +2,10 @@ import { Link } from 'gatsby'
 import React from 'react'
 import type { FC } from 'react'
 import classnames from 'classnames'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
 
 export interface Props {
   title: string
@@ -42,7 +46,9 @@ const Card: FC<Props> = ({ title, date, description, keywords, slug }) => {
               </span>
             ))}
           </div>
-          <div className="text-sm text-neutral-400">{date}</div>
+          <div className="text-sm text-neutral-400">
+            {dayjs(date).locale('ko').fromNow()}
+          </div>
         </div>
       </Link>
     </li>

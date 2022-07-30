@@ -89,7 +89,7 @@ export const query = graphql`
         id
         frontmatter {
           title
-          date(fromNow: true, locale: "ko")
+          date(locale: "ko")
           keywords
           description
         }
