@@ -12,9 +12,17 @@ export interface Props {
     MetaHTMLAttributes<HTMLMetaElement>,
     HTMLMetaElement
   >[]
+  keywords?: string
 }
 
-const SEO: FC<Props> = ({ title, description, thumbnail, url, meta }) => {
+const SEO: FC<Props> = ({
+  title,
+  description,
+  thumbnail,
+  url,
+  meta,
+  keywords
+}) => {
   const { site } = useStaticQuery(graphql`
     query {
       site {
@@ -29,6 +37,9 @@ const SEO: FC<Props> = ({ title, description, thumbnail, url, meta }) => {
   const DESCRIPTION = description || site?.siteMetadata?.description
   const THUMBNAIL = thumbnail || 'https://opengraph.kidow.me/api?id=rxzt4zk0v4o'
   const URL = `https://blog.kidow.me${url}`
+  const KEYWORDS =
+    keywords ||
+    'blog, react, gatsby, tailwindcss, typescript, github, vercel, front-end'
   return (
     <Helmet
       htmlAttributes={{ lang: 'ko', dir: 'ltr' }}
@@ -43,11 +54,7 @@ const SEO: FC<Props> = ({ title, description, thumbnail, url, meta }) => {
         { name: 'theme-color', content: '#19191c' },
         { name: 'msapplication-TileColor', content: '#19191c' },
         { name: 'robots', content: 'index, follow' },
-        {
-          name: 'keywords',
-          content:
-            'blog, react, gatsby, tailwindcss, typescript, github, vercel, front-end'
-        },
+        { name: 'keywords', content: KEYWORDS },
         { name: 'author', content: 'Dongwook Kim' },
         {
           name: 'google-site-verification',

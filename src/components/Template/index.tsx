@@ -140,6 +140,7 @@ const Template: FC<Props> = ({ data }) => {
         description={data.mdx.frontmatter.description}
         thumbnail={data.mdx.frontmatter.thumbnail}
         url={data.mdx.fields.slug}
+        keywords={data.mdx.frontmatter.keywords}
       />
 
       <section className="container mx-auto max-w-screen-md">
