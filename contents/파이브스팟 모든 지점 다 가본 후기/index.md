@@ -367,6 +367,7 @@ keywords: 파이브스팟, 공유오피스, 패스트파이브, 후기
 ![지하1층3](hongdae4.jpg)
 ![층 안내](hongdae5.jpg)
 ![5층 전망](hongdae6.jpg)
+![5층 내부](hongdae7.jpeg)
 
 ## 총평
 
