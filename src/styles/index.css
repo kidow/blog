@@ -184,3 +184,11 @@ $neutral-900: #171717;
   padding-left: 0.3em !important;
   padding-right: 0.3em !important;
 }
+
+.gatsby-resp-image-background-image {
+  display: none !important;
+}
+
+.gatsby-resp-image-image {
+  position: static !important;
+}
