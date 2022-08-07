@@ -15,18 +15,12 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-postcss',
-    {
-      resolve: 'gatsby-plugin-advanced-sitemap',
-      options: {
-        output: '/sitemap.xml',
-        exclude: ['/404.html', '/404', '/offline-plugin-app-shell-fallback']
-      }
-    },
+    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: 'https://blog.kidow.me',
-        sitemap: 'https://blog.kidow.me/sitemap.xml',
+        sitemap: 'https://blog.kidow.me/sitemap-pages.xml',
         policy: [{ userAgent: '*', allow: '/' }]
       }
     },
