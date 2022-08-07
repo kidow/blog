@@ -14,6 +14,7 @@ import {
 import classnames from 'classnames'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
+import { CalendarIcon } from '@heroicons/react/outline'
 
 export interface Props {
   data: {
@@ -311,6 +312,16 @@ const Template: FC<Props> = ({ data }) => {
         </div>
       </article>
 
+      <a
+        href="https://whattime.co.kr/wcgo2ling"
+        target="_blank"
+        className="group fixed right-5 bottom-16 z-30 cursor-pointer rounded-full bg-neutral-600 p-2 text-sm duration-100 active:bg-neutral-700"
+      >
+        <span className="hidden px-1 group-hover:inline-block">
+          커피챗 예약하기
+        </span>
+        <CalendarIcon className="h-5 w-5 group-hover:hidden" />
+      </a>
       <BackTop />
       <Footer />
     </>

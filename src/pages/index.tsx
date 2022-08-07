@@ -43,6 +43,13 @@ const HomePage: FC<{
           >
             Github
           </a>
+          <a
+            href="https://whattime.co.kr/wcgo2ling"
+            target="_blank"
+            className="hover:text-neutral-400 hover:underline"
+          >
+            커피챗 예약
+          </a>
         </div>
         <ul className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {data?.allMdx?.nodes.map((item) => (
