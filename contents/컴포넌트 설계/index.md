@@ -200,7 +200,7 @@ export { default as ButtonContainer } from './ButtonContainer'
 
 그러다가 `Ant Design`의 컴포넌트 설계 방식을 알게 되었는데, 이 방식이 마음에 들어서 이 방식으로 하고 있습니다.
 
-```typescript{6-8,15}
+```typescript{6-8,11,15}
 // components/Button/index.tsx
 import type { FC } from 'react'
 import ButtonGroup from './Group'
@@ -211,7 +211,7 @@ interface IButton extends FC<Props> {
 }
 interface State {}
 
-const Button: FC<Props> = ({ children }) => {
+const Button: IButton = ({ children }) => {
   return <button>{children}</button>
 }
 
@@ -231,3 +231,26 @@ export { default as Button } from './Button'
 ```
 
 `<ButtonGroup />`으로 선언하는 것보다는 훨씬 가독성이 좋아진 것 같습니다. 또한 `Button`만 불러오면 되니 import문 코드량도 줄어들 수 있습니다.
+
+## 22.8.12 추가 수정
+
+최근에 카카오 FE 기술블로그에서 컴포넌트를 확장 설계하는 방법을 소개했는데, 그 방식이 제가 하는 방식보다 더 명확하고 편한 것 같아서 저도 방식을 바꿨습니다.
+
+interface를 추가로 선언해서 붙이는 방식은 이제 사용하지 않고, 대신 export default 시 `Object.assign` 을 사용해서 하위 컴포넌트들을 묶어서 내보냅니다.
+
+```typescript{12}
+// components/Button/index.tsx
+import type { FC } from 'react'
+import ButtonGroup from './Group'
+
+export interface Props {}
+interface State {}
+
+const Button: FC<Props> = ({ children }) => {
+  return <button>{children}</button>
+}
+
+export default Object.assign(Button, { Group: ButtonGroup })
+```
+
+참조: [합성 컴포넌트로 재사용성 극대화하기](https://fe-developers.kakaoent.com/2022/220731-composition-component/)
