@@ -74,7 +74,7 @@ const HomePage: FC<{
                   <img
                     src={item.thumbnail}
                     alt=""
-                    className="h-40 w-full rounded"
+                    className="h-40 w-full rounded object-cover"
                     draggable={false}
                   />
                   <div className="mt-2 group-hover:underline">{item.name}</div>
