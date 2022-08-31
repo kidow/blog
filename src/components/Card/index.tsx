@@ -21,7 +21,7 @@ const Card: FC<Props> = ({ title, date, description, keywords, slug }) => {
   return (
     <li>
       <Link to={slug}>
-        <div className="group space-y-2">
+        <article className="group space-y-2">
           <h2 className="text-lg line-clamp-2 group-hover:underline">
             {title}
           </h2>
@@ -50,7 +50,7 @@ const Card: FC<Props> = ({ title, date, description, keywords, slug }) => {
           <div className="text-sm text-neutral-400">
             {dayjs(date).locale('ko').fromNow()}
           </div>
-        </div>
+        </article>
       </Link>
     </li>
   )
