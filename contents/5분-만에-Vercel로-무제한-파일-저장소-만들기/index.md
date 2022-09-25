@@ -29,6 +29,26 @@ express를 설치합니다. 작성일 기준 express의 버전은 `^4.18.1` 입�
 npm install express
 ```
 
+package.json의 main과 scripts를 수정해 줍니다.
+
+```json
+{
+  "name": "files",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
+```
+
 `src` 폴더를 만들고 그 안에 `index.js` 를 생성합니다. 그리고 단 4줄만 적어줍니다.
 
 ```javascript
