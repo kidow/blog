@@ -1,10 +1,14 @@
 import React from 'react'
 import type { FC } from 'react'
 import { graphql, Link } from 'gatsby'
-import { Card, Footer, SEO } from 'components'
+import { Footer, SEO } from 'components'
 import { PROJECTS } from 'data'
+import classnames from 'classnames'
 import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ko'
+
+dayjs.extend(relativeTime)
 
 const HomePage: FC<{
   data: {
@@ -54,42 +58,71 @@ const HomePage: FC<{
             커피챗 예약
           </a>
         </div>
-        <Link to={data?.allMdx?.nodes?.at(0)?.fields.slug || ''}>
-          <article className="group mt-10 gap-10 sm:flex">
-            <div className="hidden flex-1 sm:block">
-              <img
-                src={data?.allMdx?.nodes?.at(0)?.frontmatter.thumbnail}
-                alt=""
-              />
-            </div>
-            <div className="flex-1 space-y-2">
-              <span className="rounded-full bg-neutral-800 py-1 px-3">
-                {data?.allMdx?.nodes.at(0)?.frontmatter.keywords}
-              </span>
-              <div className="text-2xl font-semibold group-hover:underline">
-                {data?.allMdx?.nodes.at(0)?.frontmatter.title}
-              </div>
-              <div className="text-neutral-400">
-                {data?.allMdx?.nodes.at(0)?.frontmatter.description}
-              </div>
-              <p>
-                {dayjs(data?.allMdx?.nodes.at(0)?.frontmatter.date).format(
-                  'YYYY년 MM월 DD일'
+        <ul className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-12">
+          {data?.allMdx?.nodes.map((item, key) => (
+            <li
+              key={key}
+              className="sm:first:col-span-2 md:col-span-2 md:first:col-span-6 lg:col-span-3 lg:first:col-span-12 md:[&:nth-child(2)]:col-span-3 lg:[&:nth-child(2)]:col-span-6 md:[&:nth-child(3)]:col-span-3 lg:[&:nth-child(3)]:col-span-6 lg:[&:nth-child(4)]:col-span-4 lg:[&:nth-child(5)]:col-span-4 lg:[&:nth-child(6)]:col-span-4"
+            >
+              <Link
+                to={item.fields.slug}
+                className={classnames({
+                  'md:grid md:grid-cols-2 md:gap-8': key === 0
+                })}
+              >
+                {key === 0 && (
+                  <div className="overflow-hidden rounded">
+                    <img
+                      src={item.frontmatter.thumbnail}
+                      alt=""
+                      className="hidden duration-150 hover:scale-105 sm:block"
+                    />
+                  </div>
                 )}
-              </p>
-            </div>
-          </article>
-        </Link>
-        <ul className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {data?.allMdx?.nodes.slice(1).map((item) => (
-            <Card
-              key={item.id}
-              title={item.frontmatter.title}
-              date={item.frontmatter.date}
-              description={item.frontmatter.description}
-              keywords={item.frontmatter.keywords}
-              slug={item.fields.slug}
-            />
+                <article className="group space-y-2">
+                  <h2
+                    className={classnames(
+                      'text-lg line-clamp-2 group-hover:underline',
+                      { 'sm:text-3xl sm:font-semibold': key === 0 }
+                    )}
+                  >
+                    {item.frontmatter.title}
+                  </h2>
+                  <p className="text-neutral-400 line-clamp-3">
+                    {item.frontmatter.description}
+                  </p>
+                  <div className="flex flex-wrap gap-3 text-xs md:text-sm">
+                    {item.frontmatter.keywords.split(', ').map((keyword) => (
+                      <span
+                        className={classnames(
+                          'rounded-full bg-neutral-800 py-1 px-3',
+                          {
+                            'border border-[#61dafb] text-[#61dafb]':
+                              keyword === 'React',
+                            'border border-[#38bdf8] text-[#38bdf8]':
+                              keyword === 'TailwindCSS',
+                            'border border-[#bf4080] text-[#bf4080]':
+                              keyword === 'SCSS',
+                            'border border-[#da936a] text-[#da936a]':
+                              keyword === 'Styled Components',
+                            'border border-[#25c19f] text-[#25c19f]':
+                              keyword === 'Docusaurus',
+                            'border border-[#FF528C] text-[#FF528C]':
+                              keyword === 'Storybook'
+                          }
+                        )}
+                        key={keyword}
+                      >
+                        {keyword}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="text-sm text-neutral-400">
+                    {dayjs(item.frontmatter.date).locale('ko').fromNow()}
+                  </div>
+                </article>
+              </Link>
+            </li>
           ))}
         </ul>
         <div className="space-y-5">
