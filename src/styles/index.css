@@ -104,15 +104,6 @@ $neutral-900: #171717;
 #markdown h2,
 #markdown h3 {
   font-weight: bold;
-  padding-left: 16px;
-}
-
-#markdown h2 {
-  border-left: 2px solid $neutral-200;
-}
-
-#markdown h3 {
-  border-left: 4px solid $neutral-200;
 }
 
 #markdown h4 {
@@ -144,6 +135,10 @@ $neutral-900: #171717;
 
 #markdown strong {
   color: $neutral-200;
+}
+
+#markdown hr {
+  border-color: $neutral-800;
 }
 
 .gatsby-highlight-code-line {

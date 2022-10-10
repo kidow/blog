@@ -312,6 +312,26 @@ const Template: FC<Props> = ({ data }) => {
         </div>
       </article>
 
+      <section className="flex items-center justify-center bg-black py-16 px-5">
+        <div className="text-center">
+          <div className="text-xl font-semibold lg:text-3xl">
+            웹사이트 피드백 수집을 자동화하세요.
+          </div>
+          <div className="mt-2 text-neutral-400">
+            로그인은 필요없으며 무료입니다. 여기서 테스트하실 수 있습니다.
+          </div>
+          <div className="mt-7">
+            <a
+              href="https://feedbank.app"
+              target="_blank"
+              className="rounded-lg bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500 py-2.5 px-4 text-white"
+            >
+              방문하기
+            </a>
+          </div>
+        </div>
+      </section>
+
       <a
         href="https://whattime.co.kr/wcgo2ling"
         target="_blank"

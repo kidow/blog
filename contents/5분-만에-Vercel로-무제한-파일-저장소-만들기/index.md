@@ -73,3 +73,9 @@ app.listen(4000)
 ![https://files.kidow.me/image/business-card.png](https://files.kidow.me/image/business-card.png)
 
 끝. [https://files.kidow.me/image/business-card.png](https://files.kidow.me/image/business-card.png)
+
+### +참고
+
+Vercel에는 **Bandwidth** 라는 것이 있습니다. 프로젝트 배포 과정에서 수신 혹은 발신한 데이터의 총량을 말하는 데, Production과 Preview 환경 모두를 통틀어 말합니다.
+
+월 별이 아닌 총 **100GB** 까지인데, 이 정도면 엄청나게 널널한 편이라 크게 신경쓸 필요는 없지만 특히 크고 작은 이미지 파일을 너무 많이 배포하면 순식간에 용량이 찰 수도 있으니 이 점만 유의하시면 될 겁니다.

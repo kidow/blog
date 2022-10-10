@@ -58,11 +58,11 @@ const HomePage: FC<{
             커피챗 예약
           </a>
         </div>
-        <ul className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-12">
+        <ul className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
           {data?.allMdx?.nodes.map((item, key) => (
             <li
               key={key}
-              className="sm:first:col-span-2 md:col-span-2 md:first:col-span-6 lg:col-span-3 lg:first:col-span-12 md:[&:nth-child(2)]:col-span-3 lg:[&:nth-child(2)]:col-span-6 md:[&:nth-child(3)]:col-span-3 lg:[&:nth-child(3)]:col-span-6 lg:[&:nth-child(4)]:col-span-4 lg:[&:nth-child(5)]:col-span-4 lg:[&:nth-child(6)]:col-span-4"
+              className="sm:first:col-span-2 md:first:col-span-4 md:[&:nth-child(2)]:col-span-2 md:[&:nth-child(3)]:col-span-2"
             >
               <Link
                 to={item.fields.slug}
@@ -92,7 +92,7 @@ const HomePage: FC<{
                     {item.frontmatter.description}
                   </p>
                   <div className="flex flex-wrap gap-3 text-xs md:text-sm">
-                    {item.frontmatter.keywords.split(', ').map((keyword) => (
+                    {item.frontmatter.keywords?.split(', ').map((keyword) => (
                       <span
                         className={classnames(
                           'rounded-full bg-neutral-800 py-1 px-3',
