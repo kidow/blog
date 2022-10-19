@@ -17,7 +17,12 @@ export const PROJECTS: Array<{ name: string; url: string; thumbnail: string }> =
     },
     {
       name: 'Feedbank',
-      url: 'https://beta.feedbank.app',
+      url: 'https://feedbank.app',
       thumbnail: '/feedbank.png'
+    },
+    {
+      name: 'Coddee',
+      url: 'https://coddee.dev',
+      thumbnail: '/coddee.png'
     }
   ]
