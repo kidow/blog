@@ -1,28 +1,21 @@
-# Gatsby
+# Subdomain Project - [Blog](https://blog.kidow.me)
 
-This directory is a brief example of a [Gatsby](https://www.gatsbyjs.org/) app with [Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions) that can be deployed to Vercel with zero configuration.
+> - [archive.kidow.me](https://github.com/kidow/archive)
+> - [blog.kidow.me](https://github.com/kidow/blog)
+> - [components.kidow.me](https://github.com/kidow/components)
+> - [files.kidow.me](https://files.kidow.me)
+> - [memo.kidow.me](https://github.com/kidow/memo)
+> - [opengraph.kidow.me](https://github.com/kidow/opengraph)
+> - [resume.kidow.me](https://github.com/kidow/resume)
 
-## Deploy Your Own
+---
 
-Deploy your own Gatsby project, along with Serverless Functions, with Vercel.
+저의 개인 블로그입니다.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/gatsby&template=gatsby)
+---
 
-_Live Example: https://gatsby.vercel.app_
+## Stacks
 
-## Running Locally
-
-> **Note:** [Gatsby Functions](https://www.gatsbyjs.com/docs/reference/functions/getting-started/) are not yet supported on Vercel, which is why the API Route is in `/api` instead of `/src/api`.
-
-To run your Gatsby application and your API Route, you'll need to use the [Vercel CLI](https://vercel.com/cli):
-
-```shell
-$ npm i -g vercel
-$ vercel
-```
-
-Alternatively, you can remove the API and just use Gatsby:
-
-```shell
-$ yarn develop
-```
+- Gatsby
+- Typescript
+- TailwindCSS
