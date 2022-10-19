@@ -322,9 +322,29 @@ const Template: FC<Props> = ({ data }) => {
           </div>
           <div className="mt-7">
             <a
-              href="https://feedbank.app"
+              href="https://feedbank.app?utm_source=kidow-blog&utm_medium=blog"
               target="_blank"
               className="rounded-lg bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500 py-2.5 px-4 text-white"
+            >
+              방문하기
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="flex items-center justify-center border-t border-neutral-800 bg-black py-16 px-5">
+        <div className="text-center">
+          <div className="text-xl font-semibold lg:text-3xl">
+            개발자 채팅방에 놀러오세요.
+          </div>
+          <div className="mt-2 text-neutral-400">
+            Github 프로필 연동으로 개발자만 가입할 수 있습니다.
+          </div>
+          <div className="mt-7">
+            <a
+              href="https://coddee.dev?utm_source=blog&utm_medium=blog"
+              target="_blank"
+              className="rounded-lg bg-gradient-to-r from-rose-500 to-pink-500 py-2.5 px-4 text-white"
             >
               방문하기
             </a>
