@@ -36,7 +36,7 @@ const SEO: FC<Props> = ({
   const TITLE = title || site?.siteMetadata?.title
   const DESCRIPTION = description || site?.siteMetadata?.description
   const THUMBNAIL = thumbnail || 'https://opengraph.kidow.me/api?id=rxzt4zk0v4o'
-  const URL = `https://blog.kidow.me${url}`
+  const URL = `https://blog.kidow.me/${url}`
   const KEYWORDS =
     keywords ||
     'blog, react, gatsby, tailwindcss, typescript, github, vercel, front-end'
