@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import type { FC } from 'react'
 import { graphql, Link } from 'gatsby'
 import { Footer, SEO } from 'components'
@@ -7,6 +7,8 @@ import classnames from 'classnames'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ko'
+import ActivityCalendar from 'react-activity-calendar'
+import type { Day } from 'react-activity-calendar'
 
 dayjs.extend(relativeTime)
 
@@ -30,6 +32,14 @@ const HomePage: FC<{
   }
   path: string
 }> = ({ data, path }) => {
+  const [list, setList] = useState<Day[]>([])
+
+  useEffect(() => {
+    fetch('https://github-contributions-api.jogruber.de/v4/kidow?y=last')
+      .then((res) => res.json())
+      .then((json) => setList(json?.contributions || []))
+      .catch((err) => console.log('err', err))
+  }, [])
   return (
     <main>
       <SEO title="개발자 Kidow 블로그" />
@@ -125,6 +135,42 @@ const HomePage: FC<{
             </li>
           ))}
         </ul>
+        <div className="mt-20 flex justify-center">
+          <ActivityCalendar
+            data={list}
+            labels={{
+              months: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+              ],
+              weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+              totalCount: '{{count}} contributions in {{year}}',
+              tooltip: '<strong>{{count}} contributions</strong> on {{date}}',
+              legend: {
+                less: 'Less',
+                more: 'More'
+              }
+            }}
+            theme={{
+              level0: '#dcfce7',
+              level1: '#86efac',
+              level2: '#22c55e',
+              level3: '#15803d',
+              level4: '#14532d'
+            }}
+            // children={<ReactTooltip html />}
+          />
+        </div>
         <div className="space-y-5">
           <h2 className="mt-20 w-40 border-b-2 border-neutral-50 pb-3 text-2xl sm:text-3xl">
             프로젝트
