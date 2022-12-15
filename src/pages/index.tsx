@@ -9,6 +9,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ko'
 import ActivityCalendar from 'react-activity-calendar'
 import type { Day } from 'react-activity-calendar'
+import ReactTooltip from 'react-tooltip'
 
 dayjs.extend(relativeTime)
 
@@ -168,7 +169,7 @@ const HomePage: FC<{
               level3: '#15803d',
               level4: '#14532d'
             }}
-            // children={<ReactTooltip html />}
+            children={<ReactTooltip html />}
           />
         </div>
         <div className="space-y-5">

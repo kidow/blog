@@ -42,7 +42,8 @@
     "react": "^17.0.1",
     "react-activity-calendar": "^1.7.0",
     "react-dom": "^17.0.1",
-    "react-helmet": "6.1.0"
+    "react-helmet": "6.1.0",
+    "react-tooltip": "^4.5.1"
   },
   "homepage": "https://blog.kidow.me",
   "author": "Kidow <wcgo2ling@gmail.com>",
