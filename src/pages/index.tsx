@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import type { FC } from 'react'
 import { graphql, Link } from 'gatsby'
-import { Footer, SEO } from 'components'
+import { Footer, SEO, Snowfall } from 'components'
 import { PROJECTS } from 'data'
 import classnames from 'classnames'
 import dayjs from 'dayjs'
@@ -194,6 +194,7 @@ const HomePage: FC<{
         </div>
       </div>
       <Footer path={path} />
+      <Snowfall />
     </main>
   )
 }

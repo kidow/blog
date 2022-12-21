@@ -9,7 +9,8 @@ import {
   Dialog,
   DialogShow,
   DialogShowModal,
-  DialogCustomView
+  DialogCustomView,
+  Snowfall
 } from 'components'
 import classnames from 'classnames'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
@@ -144,7 +145,7 @@ const Template: FC<Props> = ({ data }) => {
         keywords={data.mdx.frontmatter.keywords}
       />
 
-      <section className="container mx-auto max-w-screen-md">
+      <section className="container z-10 mx-auto max-w-screen-md">
         <div className="my-10 space-y-4 text-center">
           <div className="mx-auto mb-10 flex max-w-xs items-center justify-between px-6 text-sm text-neutral-500">
             <a
@@ -364,6 +365,7 @@ const Template: FC<Props> = ({ data }) => {
       </a>
       <BackTop />
       <Footer />
+      <Snowfall />
     </>
   )
 }
