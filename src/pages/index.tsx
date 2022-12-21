@@ -163,11 +163,11 @@ const HomePage: FC<{
               }
             }}
             theme={{
-              level0: '#dcfce7',
-              level1: '#86efac',
-              level2: '#22c55e',
-              level3: '#15803d',
-              level4: '#14532d'
+              level0: '#161b22',
+              level1: '#0A3069',
+              level2: '#0969DA',
+              level3: '#54AEFF',
+              level4: '#B6E3FF'
             }}
             children={<ReactTooltip html />}
           />
