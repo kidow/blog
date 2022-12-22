@@ -38,6 +38,39 @@ HTML에 스크립트를 붙여서 플러그인을 생성하면 화면 구석에 
 
 원래 텍스트 없이 엔터를 누르면 아무 반응이 없어야 하는 데, 제약을 걸어놓지 않아서 그랬던 걸로 기억합니다.
 
+## Vue 익힐 때 들어왔던 것 같았는데 이번에도 Vue 방 꼭 만들어주세요
+
+![](10-19-20-00.png)
+
+옛날에 디디톡 만들 때 Vue 방이 있었는 데, 그 때 계셨던 분이었던 것 같네요.
+
+## 마우스 커서가 코드 블록 위에 올라와 있으면 마우스 스크롤이 동작하지 않습니다
+
+![](10-20-18-29.png)
+
+언급하신 문제가 사용한 라이브러리인 Monaco Editor에 존재하는 문제였습니다. 다음과 같이 `alwaysConsumeMouseWheel: false` 옵션을 넣어보니 문제가 해결되었습니다.
+
+```typescript
+<MonacoEditor
+  {...props}
+  theme={theme === 'dark' ? 'vs-dark' : 'light'}
+  loading=""
+  beforeMount={beforeMount}
+  options={{
+    ...props.options,
+    wordWrap: 'on',
+    fontSize: 14,
+    minimap: { enabled: false },
+    scrollbar: {
+      vertical: 'hidden',
+      alwaysConsumeMouseWheel: false
+    },
+    tabSize: 4,
+    overviewRulerLanes: 0
+  }}
+/>
+```
+
 ## 어서 다시 활성화 되었으면 좋겠네요 응원합니다
 
 ![](10-21-11-49.png)
