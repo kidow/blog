@@ -2,7 +2,7 @@
 title: 개발자 채팅방을 만들었습니다
 date: 2022-10-18
 description: 2년 전에 다른 이름으로 채팅방 서비스를 만든 적이 있습니다. ddtalk이라는 서비스인데요.
-thumbnail: https://og.kidow.me/api/blog?id=u3meic3suo
+thumbnail: https://og.kidow.me/api/image?id=u3meic3suo
 keywords: Chatting, Code-Block, Supabase
 ---
 

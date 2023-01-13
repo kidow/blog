@@ -11,9 +11,9 @@ export const PROJECTS: Array<{ name: string; url: string; thumbnail: string }> =
       thumbnail: '/archive.png'
     },
     {
-      name: 'opengraph.',
-      url: 'https://opengraph.kidow.me',
-      thumbnail: '/opengraph.png'
+      name: 'memo.',
+      url: 'https://memo.kidow.me',
+      thumbnail: '/memo.png'
     },
     {
       name: 'Feedbank',

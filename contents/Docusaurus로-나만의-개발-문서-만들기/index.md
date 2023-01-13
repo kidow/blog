@@ -2,7 +2,7 @@
 title: Docusaurus로 나만의 개발 문서 만들기
 date: 2022-06-27
 description: Docusaurus는 개발 문서 작성에 최적화된 React 프레임워크로, React를 만든 Facebook 팀에서 만들었습니다.
-thumbnail: https://og.kidow.me/api/blog?id=qmyhmx0d05l
+thumbnail: https://og.kidow.me/api/image?id=qmyhmx0d05l
 keywords: Docusaurus
 ---
 

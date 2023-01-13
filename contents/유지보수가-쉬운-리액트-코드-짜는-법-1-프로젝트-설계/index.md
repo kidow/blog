@@ -2,7 +2,7 @@
 title: 유지보수가 쉬운 리액트 코드 짜는 법 - (1) 프로젝트 설계
 date: 2022-05-26
 description: Next.js를 중심으로, components, containers, services 등의 폴더들을 소개합니다.
-thumbnail: https://og.kidow.me/api/blog?id=sbs0dm5cvde
+thumbnail: https://og.kidow.me/api/image?id=sbs0dm5cvde
 series: 유지보수가 쉬운 리액트 코드 짜는 법
 order: 1
 keywords: React, 유지보수
