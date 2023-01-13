@@ -2,7 +2,7 @@
 title: Coddee 인프라 설계 과정
 date: 2022-12-19
 description: 개발자 채팅방 Coddee의 인프라 설계 과정을 궁금해 하실 분들을 위해 이 글을 남겨봅니다.
-thumbnail: https://opengraph.kidow.me/api?id=6pyuldhdton
+thumbnail: https://og.kidow.me/api/blog?id=6pyuldhdton
 keywords: Coddee, Supabase
 ---
 

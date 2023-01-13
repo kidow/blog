@@ -2,7 +2,7 @@
 title: Toast Component 만들기
 date: 2022-12-09
 description: 개발자 채팅방 커디를 만들면서 유저들에게 알림 메시지를 띄워야 하는 경우가 있었습니다. 프로필 정보를 수정한다던지, 로그인을 하라는 안내 메시지를 띄운다던지, 에러 메시지를 띄워야 할 때가 그렇죠.
-thumbnail: https://opengraph.kidow.me/api?id=fguze8xin4
+thumbnail: https://og.kidow.me/api/blog?id=fguze8xin4
 keywords: React, Component, Toast, CustomEvent
 ---
 

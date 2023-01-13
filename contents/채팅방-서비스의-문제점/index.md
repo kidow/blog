@@ -2,7 +2,7 @@
 title: 채팅방 서비스의 문제점
 date: 2022-12-13
 description: 커디의 성능을 최적화하던 도중에 꽤 인상깊었던 경험이 있어서 공유해보고자 합니다. 채팅방 UI를 꾸민다고 하면, 보통은 다음과 같은 특징들을 고려해야 합니다.
-thumbnail: https://opengraph.kidow.me/api?id=eed4xkekc7j
+thumbnail: https://og.kidow.me/api/blog?id=eed4xkekc7j
 keywords: Coddee, 커디, 채팅방, React, Supabase
 ---
 

@@ -2,7 +2,7 @@
 title: 유지보수가 쉬운 리액트 코드 짜는 법 - (2) 네이밍
 date: 2022-05-27
 description: 네이밍의 경우도 프로젝트 설계와 같이 유지보수와 가독성을 위해서 많은 고민을 했습니다.
-thumbnail: https://opengraph.kidow.me/api?id=5pvfkcqqo7y
+thumbnail: https://og.kidow.me/api/blog?id=5pvfkcqqo7y
 series: 유지보수가 쉬운 리액트 코드 짜는 법
 order: 2
 keywords: React, 네이밍
