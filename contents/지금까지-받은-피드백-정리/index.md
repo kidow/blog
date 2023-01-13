@@ -2,7 +2,7 @@
 title: 지금까지 받은 피드백 정리
 date: 2022-12-21
 description: 저는 피드뱅크를 만들고 있습니다. 간단히 소개하자면 웹사이트 피드백 수집툴로, 작은 소프트웨어를 만드는 제 작은 회사입니다.
-thumbnail: https://opengraph.kidow.me/api?id=g2hw0mxlig8
+thumbnail: https://og.kidow.me/api/blog?id=g2hw0mxlig8
 keywords: Feedback, Feedbank, 피드백, 피드뱅크
 ---
 
