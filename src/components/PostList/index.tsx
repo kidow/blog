@@ -9,7 +9,7 @@ import 'dayjs/locale/ko'
 import ActivityCalendar from 'react-activity-calendar'
 import type { Day } from 'react-activity-calendar'
 import ReactTooltip from 'react-tooltip'
-import { Footer, Snowfall } from 'components'
+import { Footer, SEO, Snowfall } from 'components'
 import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
@@ -56,6 +56,7 @@ const PostList = ({
   }, [])
   return (
     <>
+      <SEO />
       <div className="container mx-auto min-h-screen px-6 pt-10 pb-20">
         <div className="flex items-center gap-5 text-sm text-neutral-500">
           <img src="/kidow-blog.svg" alt="" className="h-7" />
