@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import type { FC } from 'react'
 import { graphql, Link } from 'gatsby'
-import { Footer, SEO, Snowfall } from 'components'
+import type { PageProps } from 'gatsby'
 import { PROJECTS } from 'data'
 import classnames from 'classnames'
 import dayjs from 'dayjs'
@@ -10,11 +9,25 @@ import 'dayjs/locale/ko'
 import ActivityCalendar from 'react-activity-calendar'
 import type { Day } from 'react-activity-calendar'
 import ReactTooltip from 'react-tooltip'
+import { Footer, Snowfall } from 'components'
+import {
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon
+} from '@heroicons/react/outline'
 
 dayjs.extend(relativeTime)
 
-const HomePage: FC<{
-  data: {
+export interface Props {}
+interface State {}
+
+const PostList = ({
+  data,
+  pageContext: { currentPage, numPages },
+  path
+}: PageProps<
+  {
     allMdx: {
       nodes: Array<{
         id: string
@@ -30,9 +43,9 @@ const HomePage: FC<{
         }
       }>
     }
-  }
-  path: string
-}> = ({ data, path }) => {
+  },
+  { currentPage: number; numPages: number }
+>) => {
   const [list, setList] = useState<Day[]>([])
 
   useEffect(() => {
@@ -42,8 +55,7 @@ const HomePage: FC<{
       .catch((err) => console.log('err', err))
   }, [])
   return (
-    <main>
-      <SEO title="개발자 Kidow 블로그" />
+    <>
       <div className="container mx-auto min-h-screen px-6 pt-10 pb-20">
         <div className="flex items-center gap-5 text-sm text-neutral-500">
           <img src="/kidow-blog.svg" alt="" className="h-7" />
@@ -136,6 +148,83 @@ const HomePage: FC<{
             </li>
           ))}
         </ul>
+        <ul className="mt-10 flex select-none items-center justify-center">
+          <li>
+            <Link
+              rel="prev"
+              to="/"
+              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-neutral-800"
+            >
+              <ChevronDoubleLeftIcon className="h-5 w-5" />
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              rel="prev"
+              to={currentPage <= 2 ? '/' : `/${currentPage - 1}`}
+              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-neutral-800"
+            >
+              <ChevronLeftIcon className="h-5 w-5" />
+            </Link>
+          </li>
+          {numPages < 5
+            ? Array.from({ length: numPages }).map((_, key) => (
+                <li key={key}>
+                  <Link
+                    to={key === 0 ? '/' : `/${key + 1}`}
+                    className={classnames(
+                      'flex h-10 w-10 items-center justify-center rounded-full hover:bg-neutral-800',
+                      {
+                        'font-bold':
+                          key === 0 ? path === '/' : path === `/${key + 1}`
+                      }
+                    )}
+                  >
+                    {key + 1}
+                  </Link>
+                </li>
+              ))
+            : Array.from({ length: 5 }).map((_, key) => (
+                <li key={key}>
+                  <Link
+                    to={
+                      key === 0 && currentPage === 3
+                        ? '/'
+                        : `/${currentPage - 2}`
+                    }
+                    className={classnames(
+                      'flex h-10 w-10 items-center justify-center rounded-full hover:bg-neutral-800',
+                      { 'font-bold': key === 2 }
+                    )}
+                  >
+                    {currentPage - 2}
+                  </Link>
+                </li>
+              ))}
+          <li>
+            <Link
+              rel="next"
+              to={
+                currentPage === numPages
+                  ? `/${numPages}`
+                  : `/${currentPage + 1}`
+              }
+              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-neutral-800"
+            >
+              <ChevronRightIcon className="h-5 w-5" />
+            </Link>
+          </li>
+          <li>
+            <Link
+              rel="next"
+              to={`/${numPages}`}
+              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-neutral-800"
+            >
+              <ChevronDoubleRightIcon className="h-5 w-5" />
+            </Link>
+          </li>
+        </ul>
         <div className="mt-20 flex justify-center">
           <ActivityCalendar
             data={list}
@@ -164,10 +253,10 @@ const HomePage: FC<{
             }}
             theme={{
               level0: '#161b22',
-              level1: '#0A3069',
-              level2: '#0969DA',
-              level3: '#54AEFF',
-              level4: '#B6E3FF'
+              level1: '#0e4429',
+              level2: '#006d32',
+              level3: '#26a641',
+              level4: '#39d353'
             }}
             children={<ReactTooltip html />}
           />
@@ -195,13 +284,62 @@ const HomePage: FC<{
       </div>
       <Footer path={path} />
       <Snowfall />
-    </main>
+    </>
+  )
+}
+
+export const Head = () => {
+  const TITLE = 'kidow 블로그'
+  const DESCRIPTION = '더 게으르기 위해 더 열심히 공부하는 개발자입니다.'
+  const URL = 'https://blog.kidow.me'
+  const IMAGE = 'https://og.kidow.me/api/image?id=rxzt4zk0v4o'
+  return (
+    <>
+      <title>{TITLE}</title>
+      <link rel="canonical" href={URL} />
+      <meta name="description" content={DESCRIPTION} />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="theme-color" content="#19191c" />
+      <meta name="msapplication-TileColor" content="#19191c" />
+      <meta name="robots" content="index, follow" />
+      <meta
+        name="keywords"
+        content="blog, react, gatsby, tailwindcss, typescript, github, vercel, front-end"
+      />
+      <meta name="author" content="Dongwook Kim" />
+      <meta
+        name="google-site-verification"
+        content="sbzpJiDpgeXijDrNF1qHG4W4P1DpMlpEuS-ztOQm0EU"
+      />
+      <meta
+        name="naver-site-verification"
+        content="b13059f284b5b3364c6329f2865cfc317cf5fd6c"
+      />
+      <meta name="og:title" content={TITLE} />
+      <meta name="og:description" content={DESCRIPTION} />
+      <meta name="og:type" content="website" />
+      <meta name="og:image" content={IMAGE} />
+      <meta name="og:image:width" content="1600" />
+      <meta name="og:image:height" content="900" />
+      <meta name="og:url" content={URL} />
+      <meta name="og:locale" content="ko_KR" />
+      <meta name="og:site_name" content={TITLE} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={TITLE} />
+      <meta name="twitter:description" content={DESCRIPTION} />
+      <meta name="twitter:domain" content={URL} />
+      <meta name="twitter:image" content={IMAGE} />
+    </>
   )
 }
 
 export const query = graphql`
-  query {
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+  query postList($skip: Int!, $limit: Int!) {
+    allMdx(
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: $limit
+      skip: $skip
+    ) {
       nodes {
         id
         frontmatter {
@@ -219,4 +357,4 @@ export const query = graphql`
   }
 `
 
-export default HomePage
+export default PostList

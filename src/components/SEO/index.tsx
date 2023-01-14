@@ -72,7 +72,7 @@ const SEO: FC<Props> = ({
         { property: 'og:image:height', content: '600' },
         { property: 'og:url', content: URL },
         { property: 'og:locale', content: 'ko_KR' },
-        { property: 'og:site_name', content: "Web Developer Kidow's Blog" },
+        { property: 'og:site_name', content: TITLE },
         { property: 'twitter:card', content: 'summary_large_image' },
         { property: 'twitter:title', content: TITLE },
         { property: 'twitter:description', content: DESCRIPTION },
