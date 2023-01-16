@@ -319,7 +319,40 @@ const Template: FC<Props> = ({ data }) => {
             웹사이트 피드백 수집을 자동화하세요.
           </div>
           <div className="mt-2 text-neutral-400">
-            로그인은 필요없으며 무료입니다. 여기서 테스트하실 수 있습니다.
+            구글 폼보다 효과적인 방식을 택해 보세요.
+          </div>
+          <div className="gatsby-highlight mb-4" data-language="html">
+            <pre className="language-html">
+              <code className="language-html">
+                <span className="token tag">
+                  <span className="token tag">
+                    <span className="token punctuation">&lt;</span>script
+                  </span>
+                  <br />
+                  <span className="token attr-name">{'  defer'}</span>
+                  <br />
+                  <span className="token attr-name">{'  async'}</span>
+                  <br />
+                  <span className="token attr-name">{'  src'}</span>
+                  <span className="token attr-value">
+                    <span className="token punctuation attr-equals">=</span>
+                    <span className="token punctuation">"</span>
+                    https://cdn.feedbank.app/plugin.js
+                    <span className="token punctuation">"</span>
+                  </span>
+                  <br />
+                  <span className="token attr-name">{'  plugin-key'}</span>
+                  <span className="token attr-value">
+                    <span className="token punctuation attr-equals">=</span>
+                    <span className="token punctuation">"</span>
+                    [개인 키]
+                    <span className="token punctuation">"</span>
+                    <br />
+                  </span>
+                  <span className="token punctuation">/&gt;</span>
+                </span>
+              </code>
+            </pre>
           </div>
           <div className="mt-7">
             <a
