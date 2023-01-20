@@ -398,7 +398,7 @@ const Template: FC<Props> = ({ data }) => {
       </a>
       <BackTop />
       <Footer />
-      <Snowfall />
+      {/* <Snowfall /> */}
     </>
   )
 }

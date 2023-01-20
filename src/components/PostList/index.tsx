@@ -284,7 +284,7 @@ const PostList = ({
         </div>
       </div>
       <Footer path={path} />
-      <Snowfall />
+      {/* <Snowfall /> */}
     </>
   )
 }
