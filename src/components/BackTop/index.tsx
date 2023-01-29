@@ -1,6 +1,6 @@
 import React from 'react'
 import type { FC } from 'react'
-import { ArrowUpIcon } from '@heroicons/react/outline'
+import { ArrowUpIcon } from '@heroicons/react/24/outline'
 
 export interface Props {}
 interface State {}

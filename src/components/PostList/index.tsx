@@ -15,7 +15,7 @@ import {
   ChevronDoubleRightIcon,
   ChevronLeftIcon,
   ChevronRightIcon
-} from '@heroicons/react/outline'
+} from '@heroicons/react/24/outline'
 
 dayjs.extend(relativeTime)
 
@@ -154,7 +154,7 @@ const PostList = ({
             <Link
               rel="prev"
               to="/"
-              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-neutral-800"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-400 hover:bg-neutral-800"
             >
               <ChevronDoubleLeftIcon className="h-5 w-5" />
             </Link>
@@ -164,7 +164,7 @@ const PostList = ({
             <Link
               rel="prev"
               to={currentPage <= 2 ? '/' : `/${currentPage - 1}`}
-              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-neutral-800"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-400 hover:bg-neutral-800"
             >
               <ChevronLeftIcon className="h-5 w-5" />
             </Link>
@@ -211,7 +211,7 @@ const PostList = ({
                   ? `/${numPages}`
                   : `/${currentPage + 1}`
               }
-              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-neutral-800"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-400 hover:bg-neutral-800"
             >
               <ChevronRightIcon className="h-5 w-5" />
             </Link>
@@ -220,7 +220,7 @@ const PostList = ({
             <Link
               rel="next"
               to={`/${numPages}`}
-              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-neutral-800"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-400 hover:bg-neutral-800"
             >
               <ChevronDoubleRightIcon className="h-5 w-5" />
             </Link>
