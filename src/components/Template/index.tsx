@@ -401,7 +401,7 @@ const Template: FC<Props> = ({ data }) => {
       {/* <Snowfall /> */}
       <div className="fixed top-5 left-0 z-50 flex w-full animate-fade-up justify-center">
         <div className="animate-bounce rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 py-2 px-4">
-          <a href="https://kidow.me" target="_blank" className="font-semibold">
+          <a href="https://kidow.me" className="font-semibold">
             새 블로그로 이전하였습니다. 클릭 시 이동
           </a>
         </div>
